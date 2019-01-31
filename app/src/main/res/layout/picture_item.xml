@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="4dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/picture_item_image"
+            android:src="@mipmap/temp_picture1"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="250dp">
+            <TextView
+                android:text="杏色卡其色"
+                android:textSize="25dp"
+                android:paddingLeft="10dp"
+                android:textStyle="bold"
+                android:gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+            <TextView
+                android:text="by 老王RINKY"
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+            <TextView
+                android:text="杏色卡其色 灰色 看颜色就温柔，嫌无聊的话不如想我一样搭配一个不同色系的衬衫吧"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="132dp" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+                <ImageButton
+                    android:backgroundTint="@color/bg_white"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_favorite_white_48dp"
+                    />
+                <ImageButton
+                    android:backgroundTint="@color/bg_white"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_bookmark_white_48dp"/>
+                <ImageButton
+                    android:backgroundTint="@color/bg_white"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_share_black_48dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
