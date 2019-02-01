@@ -1,12 +1,14 @@
 package com.example.dress.util;
 
+import com.example.dress.util.jsondata.User;
+
 import org.litepal.LitePal;
 
 import java.util.List;
 
 public class cache {
-    private static Token token;
-    private static User user;
+    private static Token token=null;
+    private static User user=null;
     public static Token getCacheToken(){
         List<Token> tokens = LitePal.findAll(com.example.dress.util.Token.class);
         if(tokens.isEmpty()){
@@ -20,5 +22,8 @@ public class cache {
             user = new User();
         }
         return user;
+    }
+    public static void setUser(User ur){
+        user = ur;
     }
 }
