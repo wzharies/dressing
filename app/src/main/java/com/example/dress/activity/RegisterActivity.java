@@ -12,6 +12,10 @@ import android.widget.Toast;
 
 import com.example.dress.R;
 import com.example.dress.util.Code;
+import com.example.dress.util.HttpConnection;
+import com.example.dress.util.cache;
+import com.example.dress.util.jsondata.ResponseData;
+import com.example.dress.util.jsondata.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +27,6 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.et_registeractivity_password2)  EditText et_password2;
     @BindView(R.id.et_registeractivity_phoneCodes) EditText et_codes;
     @BindView(R.id.iv_registeractivity_showCode)   ImageView register_code;
-
     private String realCode;
 
     @Override
@@ -55,10 +58,11 @@ public class RegisterActivity extends BaseActivity {
                 if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password1) && !TextUtils.isEmpty(password2)) {
                     if (password1.equals(password2)) {
                         if (!TextUtils.isEmpty(codes) && realCode.equals(codes)) {
-                            Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
-                            Intent intent2 = new Intent(this, LoginActivity.class);
-                            startActivity(intent2);
-                            finish();
+                            ResponseData<User> rs = HttpConnection.register(username,password1);
+                            if(rs.getRet()==0){
+                                cache.setUser(rs.getData());
+                                Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
+                            }
                         } else {
                             Toast.makeText(RegisterActivity.this, "验证码错误", Toast.LENGTH_SHORT).show();
                             register_code.setImageBitmap(Code.getInstance().createBitmap());
@@ -74,9 +78,6 @@ public class RegisterActivity extends BaseActivity {
             }
             default :
                 break;
-
         }
     }
-
-
 }
