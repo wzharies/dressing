@@ -2,10 +2,10 @@ package com.example.dress.util.jsondata;
 
 import java.io.Serializable;
 
-public class ResponseData implements Serializable {
-    int ret;
-    String msg;
-    Object data;
+public class ResponseData<T> implements Serializable {
+    private int ret;
+    private String msg;
+    private T data;
 
     public int getRet() {
         return ret;
@@ -23,11 +23,11 @@ public class ResponseData implements Serializable {
         this.msg = msg;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }

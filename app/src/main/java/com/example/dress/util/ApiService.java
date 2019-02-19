@@ -11,9 +11,9 @@ import retrofit2.http.POST;
 public interface ApiService {
 
     @POST("login")
-    Observable<ResponseData> getUser(@Body JsonObject json);
+    Observable<ResponseData<User>> getUser(@Body JsonObject json);
 
     @POST("register")
-    Observable<ResponseData> register(@Body JsonObject json);
+    Observable<ResponseData<Object>> register(@Body JsonObject json);
 
 }

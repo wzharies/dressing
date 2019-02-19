@@ -53,14 +53,22 @@ public class LoginActivity extends BaseActivity{
         String phone = et_phone.getText().toString();
         String password = et_pwd.getText().toString();
         ResponseData rd = HttpConnection.login(phone,password);
-        if(rd.getRet()==0){
-            cache.setUser((User)rd.getData());
+        if(rd==null){
+            Toast.makeText(this,"连接不到服务器",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this,ViewActivity.class);
             startActivity(intent);
-        }else if(rd.getRet()==1){
-            Toast.makeText(this,"密码错误",Toast.LENGTH_LONG);
+            return ;
         }
-
+        if(rd.getRet()==0){
+            cache.setUser((User)rd.getData());
+            Toast.makeText(this,"登录陈宫",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this,ViewActivity.class);
+            startActivity(intent);
+            finish();
+        }else if(rd.getRet()==1){
+            Toast.makeText(this,"密码错误",Toast.LENGTH_LONG).show();
+        }
+        Toast.makeText(this,"登录",Toast.LENGTH_LONG).show();
     }
     protected void find_pwd(){
         Toast.makeText(this,"findpassword",Toast.LENGTH_SHORT).show();

@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private String phone;
-    private String username; //用用户名
+    private String username; //用户名
+    private String id;
+
     public User(){
         super();
     }
@@ -32,4 +34,12 @@ public class User implements Serializable {
         return this;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public User setId(String id) {
+        this.id = id;
+        return this;
+    }
 }
