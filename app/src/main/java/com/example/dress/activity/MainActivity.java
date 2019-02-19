@@ -18,5 +18,7 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent(this,ViewActivity.class);
             startActivity(intent);
         }
+        //llllll
+        //text
     }
 }
