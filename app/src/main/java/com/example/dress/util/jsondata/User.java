@@ -6,14 +6,18 @@ public class User implements Serializable {
     private String phone;
     private String username; //用户名
     private String id;
+    private String signature;
+
 
     public User(){
         super();
     }
-    public User(String phone,String username){
+    public User(String phone,String username,String id,String signature){
         super();
         this.phone = phone;
         this.username = username;
+        this.id=id;
+        this.signature=signature;
     }
 
     public String getPhone() {
@@ -42,4 +46,11 @@ public class User implements Serializable {
         this.id = id;
         return this;
     }
+    public void setSignature(String signature){
+        this.signature=signature;
+    }
+    public String getSignature(){
+        return signature;
+    }
+
 }
