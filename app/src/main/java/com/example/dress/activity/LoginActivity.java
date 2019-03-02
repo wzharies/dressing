@@ -3,6 +3,7 @@ package com.example.dress.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,12 +21,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+//public User u=new User("123456","jjflying","666","here signature");
+
 public class LoginActivity extends BaseActivity{
     @BindView(R.id.tv_find_pwd) TextView view_find_pwd;
     @BindView(R.id.tv_register) TextView view_register;
     @BindView(R.id.btn_enter) Button view_btn_enter;
     @BindView(R.id.et_phone) EditText et_phone;
     @BindView(R.id.et_pwd) EditText et_pwd;
+
+    public static User u=new User("123456","jjflying","666","here signature");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
