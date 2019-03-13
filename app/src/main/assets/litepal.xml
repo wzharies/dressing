@@ -6,7 +6,7 @@
     <version value="1" />
 
     <list>
-        <mapping class="com.example.dress.util.Token" />
+        <mapping class="com.example.dress.util.User" />
     </list>
 
 

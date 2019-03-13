@@ -34,6 +34,7 @@ public class Fragment3 extends Fragment {
 
     public static Fragment3 newInstance() {
         Fragment3 fragment = new Fragment3();
+
         return fragment;
     }
 
@@ -80,8 +81,8 @@ public class Fragment3 extends Fragment {
     }
 
    public void initselfinfo(){
-        page3_name.setText(LoginActivity.u.getUsername());
-        page3_signature.setText(LoginActivity.u.getSignature());
+   //     page3_name.setText(LoginActivity.u.getUsername());
+   //     page3_signature.setText(LoginActivity.u.getSignature());
    }
 
     @Override

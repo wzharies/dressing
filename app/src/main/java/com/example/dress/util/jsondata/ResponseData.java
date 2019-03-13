@@ -30,4 +30,13 @@ public class ResponseData<T> implements Serializable {
     public void setData(T data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "ResponseData{" +
+                "ret=" + ret +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

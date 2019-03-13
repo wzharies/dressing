@@ -35,4 +35,8 @@
     <color name="colorTextGrey">#aaaaaa</color>
     <!--背景白色-->
     <color name="bg_white">#ffffff</color>
+    <!--背景灰色-->
+    <color name="grey2">#888888</color>
+    <!-- 淡灰 -->
+    <color name="dangrey">#DDDDDD</color>
 </resources>

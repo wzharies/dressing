@@ -11,18 +11,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dress.R;
-import com.example.dress.util.HttpConnection;
-import com.example.dress.util.cache;
+import com.example.dress.util.ApiService;
+import com.example.dress.util.RetrofitManager;
+import com.example.dress.util.jsondata.JsonUser;
 import com.example.dress.util.jsondata.ResponseData;
-import com.example.dress.util.jsondata.User;
+import com.example.dress.util.User;
+import com.google.gson.JsonObject;
 
+
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
-
-//public User u=new User("123456","jjflying","666","here signature");
 
 public class LoginActivity extends BaseActivity{
     @BindView(R.id.tv_find_pwd) TextView view_find_pwd;
@@ -31,9 +37,10 @@ public class LoginActivity extends BaseActivity{
     @BindView(R.id.et_phone) EditText et_phone;
     @BindView(R.id.et_pwd) EditText et_pwd;
 
-    public static User u=new User("123456","jjflying","666","here signature");
 
-
+    public LoginActivity getActivity(){
+        return this;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +51,14 @@ public class LoginActivity extends BaseActivity{
     @OnClick({R.id.btn_enter,R.id.tv_register,R.id.tv_find_pwd})
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btn_enter:
+            case R.id.btn_enter: {
                 login();
                 break;
-            case R.id.tv_find_pwd:
+            }
+            case R.id.tv_find_pwd: {
                 find_pwd();
                 break;
+            }
             case R.id.tv_register:
                 register();
                 break;
@@ -59,23 +68,50 @@ public class LoginActivity extends BaseActivity{
     protected void login(){
         String phone = et_phone.getText().toString();
         String password = et_pwd.getText().toString();
-        ResponseData rd = HttpConnection.login(phone,password);
-        if(rd==null){
-            Toast.makeText(this,"连接不到服务器",Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this,ViewActivity.class);
-            startActivity(intent);
-            return ;
-        }
-        if(rd.getRet()==0){
-            cache.setUser((User)rd.getData());
-            Toast.makeText(this,"登录陈宫",Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this,ViewActivity.class);
-            startActivity(intent);
-            finish();
-        }else if(rd.getRet()==1){
-            Toast.makeText(this,"密码错误",Toast.LENGTH_LONG).show();
-        }
-        Toast.makeText(this,"登录",Toast.LENGTH_LONG).show();
+        JsonObject jsonuser = new JsonObject();
+        jsonuser.addProperty("phone",phone);
+        jsonuser.addProperty("password",password);
+
+        RetrofitManager.create(ApiService.class).getUser(jsonuser)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseData<Map<String,Object>>>(){
+                    @Override
+                    public void accept(@NonNull ResponseData<Map<String,Object>> rd) throws Exception {
+                        if(rd==null){
+                            Toast.makeText(LoginActivity.this,"连接不到服务器",Toast.LENGTH_LONG).show();
+                            return ;
+                        }else if(rd.getRet()==0){
+                            Log.i("login",rd.toString());
+                            Toast.makeText(LoginActivity.this,rd.getMsg(),Toast.LENGTH_LONG).show();
+                            Map<String,Object> map = rd.getData();
+                            String token =(String)map.get("token");
+                            JsonUser jsonuser = (JsonUser) map.get("user");
+                            User user = new User();
+
+                            user.setPhone(jsonuser.getPhone());
+                            user.setId(jsonuser.getId());
+                            user.setSex(jsonuser.getSex());
+                            user.setSignature(jsonuser.getSignature());
+                            user.setUsername(jsonuser.getUsername());
+                            user.setToken(token);
+                            user.save();
+
+                            Intent intent = new Intent(LoginActivity.this,ViewActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else if(rd.getRet()==1){
+                            Log.i("login",rd.toString());
+                            Toast.makeText(LoginActivity.this,rd.getMsg(),Toast.LENGTH_LONG).show();
+                        }
+                        Toast.makeText(LoginActivity.this,"登录",Toast.LENGTH_LONG).show();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.e("login",throwable.getMessage());
+                    }
+                });
     }
     protected void find_pwd(){
         Toast.makeText(this,"findpassword",Toast.LENGTH_SHORT).show();

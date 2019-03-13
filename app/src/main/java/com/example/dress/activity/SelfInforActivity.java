@@ -28,8 +28,8 @@ public class SelfInforActivity extends BaseActivity {
        save.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               LoginActivity.u.setUsername(self_name.getText().toString());
-               LoginActivity.u.setSignature(self_signature.getText().toString());
+             //  LoginActivity.u.setUsername(self_name.getText().toString());
+            //   LoginActivity.u.setSignature(self_signature.getText().toString());
                finish();
            }
        });
@@ -37,8 +37,8 @@ public class SelfInforActivity extends BaseActivity {
     }
 
     public void init(){
-        self_name.setText(LoginActivity.u.getUsername());
-        self_signature.setText(LoginActivity.u.getSignature());
+     //   self_name.setText(LoginActivity.u.getUsername());
+    //    self_signature.setText(LoginActivity.u.getSignature());
     }
 
 }
