@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:id="@+id/page3_self"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginBottom="20dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+
+                android:id="@+id/page3_1_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:textColor="@color/greens"
+                android:gravity="center_horizontal"/>
+            <TextView
+
+                android:id="@+id/page3_1_signature"
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="mystyle"
+                android:textSize="15dp"
+                android:textColor="@color/greens"/>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/page3_1_avatar"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/qq_nor"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/unset"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mydove"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="0dp"
+            android:text="@string/page3_mydove"
+            android:textSize="14dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/greens"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/shop"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:text="@string/page3_shop"
+            android:textColor="@color/greens"
+            android:layout_width="0dp"
+            android:textSize="14dp"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/set"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:text="@string/page3_setting"
+            android:layout_width="0dp"
+            android:textColor="@color/greens"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textSize="14dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/exit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="14dp"
+            android:gravity="center_vertical"
+            android:text="@string/page3_exit"
+            android:textColor="@color/greens"
+
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>
