@@ -17,6 +17,8 @@
         <activity
             android:name=".activity.EnvelopeViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.SelfInforActivity"></activity>
+>>>>>>> 9c8dc9bb2e22c6c1cf854a609c8dfe416adf49c6
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +30,7 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.ViewActivity" />
         <activity android:name=".activity.RegisterActivity" />
+
     </application>
 
 </manifest>
