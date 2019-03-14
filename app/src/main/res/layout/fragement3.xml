@@ -27,7 +27,6 @@
             <TextView
                 android:paddingLeft="20dp"
                 android:gravity="bottom"
-                android:text="Limerance"
                 android:textColor="@color/black"
                 android:id="@+id/page3_1_name"
                 android:layout_width="match_parent"
@@ -38,7 +37,6 @@
 
             <TextView
                 android:paddingLeft="20dp"
-                android:text="念念不忘，必有回响"
                 android:id="@+id/page3_1_signature"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -49,8 +47,7 @@
         <ImageView
             android:id="@+id/page3_1_avatar"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/qq_nor"/>
+            android:layout_height="100dp" />
     </LinearLayout>
 
     <LinearLayout

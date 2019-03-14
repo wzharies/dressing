@@ -3,17 +3,17 @@ package com.example.dress.util.jsondata;
 import java.io.Serializable;
 
 public class JsonUser implements Serializable {
-    private String id;
+    private int id;
     private String phone;
     private String username; //用户名
     private String signature;
-    private String sex;
+    private int sex;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,11 +41,22 @@ public class JsonUser implements Serializable {
         this.signature = signature;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(int sex) {
         this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return "JsonUser{" +
+                "id=" + id +
+                ", phone='" + phone + '\'' +
+                ", username='" + username + '\'' +
+                ", signature='" + signature + '\'' +
+                ", sex=" + sex +
+                '}';
     }
 }
