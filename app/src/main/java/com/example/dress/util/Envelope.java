@@ -5,10 +5,10 @@ import android.widget.ImageView;
 import java.io.Serializable;
 
 public class Envelope implements Serializable {
-    private String text;
-    private String sender;
-    private String receiver;
-    private int stampViewId;
+        private String text;
+        private String sender;
+        private String receiver;
+        private int stampViewId;
 
     public Envelope(String text,String sender,String receiver,int stampViewId){
         this.receiver=receiver;

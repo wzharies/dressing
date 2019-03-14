@@ -3,46 +3,67 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dangrey"
     >
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/white">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/white"
         android:id="@+id/page3_self"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginBottom="20dp">
+        android:layout_height="100dp"
+        >
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-
+                android:paddingLeft="20dp"
+                android:gravity="bottom"
+                android:text="Limerance"
+                android:textColor="@color/black"
                 android:id="@+id/page3_1_name"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:textSize="20dp"
-                android:textColor="@color/greens"
-                android:gravity="center_horizontal"/>
+                android:textSize="25sp"
+                />
+
             <TextView
-
+                android:paddingLeft="20dp"
+                android:text="念念不忘，必有回响"
                 android:id="@+id/page3_1_signature"
-
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:hint="mystyle"
-                android:textSize="15dp"
-                android:textColor="@color/greens"/>
+                android:textSize="15sp"
+                />
         </LinearLayout>
         <ImageView
             android:id="@+id/page3_1_avatar"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/qq_nor"/>
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/white">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_marginTop="20dp"
+
         android:id="@+id/unset"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -55,7 +76,11 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
+    <ImageView style="@style/imagestyle"/>
+
     <LinearLayout
+        android:background="@color/white"
+
         android:id="@+id/mydove"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -68,11 +93,14 @@
             android:textSize="14dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:textColor="@color/greens"
             android:layout_height="match_parent" />
     </LinearLayout>
 
+    <ImageView style="@style/imagestyle"/>
+
     <LinearLayout
+        android:background="@color/white"
+
         android:id="@+id/shop"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -81,7 +109,6 @@
             android:layout_height="match_parent"/>
         <TextView
             android:text="@string/page3_shop"
-            android:textColor="@color/greens"
             android:layout_width="0dp"
             android:textSize="14dp"
             android:gravity="center_vertical"
@@ -89,7 +116,11 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
+    <ImageView style="@style/imagestyle"/>
+
     <LinearLayout
+        android:background="@color/white"
+
         android:id="@+id/set"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -100,14 +131,17 @@
         <TextView
             android:text="@string/page3_setting"
             android:layout_width="0dp"
-            android:textColor="@color/greens"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:textSize="14dp"/>
     </LinearLayout>
 
+    <ImageView style="@style/imagestyle"/>
+
     <LinearLayout
+        android:background="@color/white"
+
         android:id="@+id/exit"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -123,7 +157,6 @@
             android:textSize="14dp"
             android:gravity="center_vertical"
             android:text="@string/page3_exit"
-            android:textColor="@color/greens"
 
             />
     </LinearLayout>

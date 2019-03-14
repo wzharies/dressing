@@ -30,4 +30,13 @@ public class RetrofitManager {
                 .build();
         return retrofit.create(clazz);
     }
+
+    public static<T> T createwithoutrxjava(Class<T> clazz){
+        Retrofit retrofit =new Retrofit.Builder()
+                .client(getOkHttpClient())
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit.create(clazz);
+    }
 }

@@ -7,11 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.dress.util.cache;
 
+import org.litepal.LitePal;
+
 public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(cache.getCacheToken()==null){
+        LitePal.initialize(this);
+        cache.getCache();
+        if(cache.getUser()==null){
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);
         }else{
