@@ -13,9 +13,11 @@ import android.widget.Toast;
 import com.example.dress.R;
 import com.example.dress.util.ApiService;
 import com.example.dress.util.RetrofitManager;
+import com.example.dress.util.cache;
 import com.example.dress.util.jsondata.JsonUser;
 import com.example.dress.util.jsondata.ResponseData;
 import com.example.dress.util.User;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 
@@ -85,8 +87,12 @@ public class LoginActivity extends BaseActivity{
                             Log.i("login",rd.toString());
                             Toast.makeText(LoginActivity.this,rd.getMsg(),Toast.LENGTH_LONG).show();
                             Map<String,Object> map = rd.getData();
+                            Log.i("login",map.toString());
                             String token =(String)map.get("token");
-                            JsonUser jsonuser = (JsonUser) map.get("user");
+                            Log.i("login",token);
+                            Log.i("login",map.get("user").toString());
+                            Gson gson = new Gson();
+                            JsonUser jsonuser = gson.fromJson(map.get("user").toString(),JsonUser.class);
                             User user = new User();
 
                             user.setPhone(jsonuser.getPhone());
@@ -95,7 +101,9 @@ public class LoginActivity extends BaseActivity{
                             user.setSignature(jsonuser.getSignature());
                             user.setUsername(jsonuser.getUsername());
                             user.setToken(token);
+                            Log.i("login",user.toString());
                             user.save();
+                            cache.setUser(user);
 
                             Intent intent = new Intent(LoginActivity.this,ViewActivity.class);
                             startActivity(intent);
