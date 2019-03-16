@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/write_letter"
-        android:title="写信"
-        android:icon="@mipmap/reply_item"
-        app:showAsAction="withText"/>
-
+        android:id="@+id/stamp_select_next"
+        android:title="下一步"
+        app:showAsAction="always"/>
 </menu>

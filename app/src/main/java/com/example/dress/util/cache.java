@@ -7,6 +7,8 @@ import org.litepal.LitePal;
 
 public class cache {
     private static User user=null;
+
+
     public static void getCache(){
         SQLiteDatabase db = LitePal.getDatabase();
         user = LitePal.findFirst(User.class);
