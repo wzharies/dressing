@@ -17,7 +17,12 @@ import com.bumptech.glide.Glide;
 import com.example.dress.R;
 import com.example.dress.activity.SelfInforActivity;
 
+
 import com.example.dress.activity.ShopActivity;
+import com.example.dress.adapter.ActivityCollector;
+import com.example.dress.util.cache;
+
+
 import com.example.dress.adapter.ActivityCollector;
 import com.example.dress.util.cache;
 
