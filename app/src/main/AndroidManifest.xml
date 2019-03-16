@@ -26,6 +26,8 @@
         <activity
             android:name=".activity.EnvelopeViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.StampViewActivity"
+            android:label="选择邮票"/>
 
         <activity android:name=".activity.MainActivity">
             <intent-filter>

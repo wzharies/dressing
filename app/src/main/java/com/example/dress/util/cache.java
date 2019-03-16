@@ -12,7 +12,6 @@ public class cache {
     public static void getCache(){
         SQLiteDatabase db = LitePal.getDatabase();
         user = LitePal.findFirst(User.class);
-        Log.i("cache",user.toString());
     }
 
     public static User getUser(){
