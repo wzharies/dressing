@@ -7,21 +7,21 @@ import org.litepal.crud.LitePalSupport;
 import java.io.Serializable;
 
 public class User extends LitePalSupport implements Serializable {
-    private String id;
+    private int i_d;
     private String phone;
     private String username; //用户名
     private String signature;
-    private String sex;
+    private int sex;
     private String token;
 
     public User(){
         super();
     }
-    public User(String phone,String username,String id,String password){
+    public User(String phone,String username,int id,String password){
         super();
         this.phone = phone;
         this.username = username;
-        this.id=id;
+        this.i_d=id;
     }
 
     public String getPhone() {
@@ -42,12 +42,12 @@ public class User extends LitePalSupport implements Serializable {
         return this;
     }
 
-    public String getId() {
-        return id;
+    public int getId() {
+        return i_d;
     }
 
-    public User setId(String id) {
-        this.id = id;
+    public User setId(int id) {
+        this.i_d = id;
         return this;
     }
 
@@ -61,11 +61,11 @@ public class User extends LitePalSupport implements Serializable {
         return this;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public User setSex(String sex) {
+    public User setSex(int sex) {
         this.sex = sex;
         return this;
     }
@@ -77,5 +77,17 @@ public class User extends LitePalSupport implements Serializable {
     public User setToken(String token) {
         this.token = token;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + i_d + '\'' +
+                ", phone='" + phone + '\'' +
+                ", username='" + username + '\'' +
+                ", signature='" + signature + '\'' +
+                ", sex=" + sex +
+                ", token='" + token + '\'' +
+                '}';
     }
 }

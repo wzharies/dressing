@@ -51,8 +51,8 @@ public class EnvelopeViewActivity extends AppCompatActivity {
                 finish();
                 return true;
 
-            case R.id.reply_item:
-                Intent intent = new Intent(this,WtringActivity.class);
+            case R.id.write_letter:
+                Intent intent = new Intent(this,StampViewActivity.class);
                 startActivity(intent);
 
         }

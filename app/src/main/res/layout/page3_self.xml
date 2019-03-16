@@ -8,46 +8,119 @@
     tools:context=".activity.SelfInforActivity"
 
     >
+    <RelativeLayout
+        android:id="@+id/rl_self_top"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/bg_white"
+        >
+        <ImageView
+            android:id="@+id/iv_self_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:src="@mipmap/img_3"
+            />
+
+        <TextView
+            android:id="@+id/tv_self_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改个人资料"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_toRightOf="@+id/iv_self_back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            />
+    </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/ll_self_body"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginBottom="50dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/rl_self_top"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        >
+        <!-- 第一个文本编辑框  输入用户名 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_self_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="笔  名："/>
+            <EditText
+                android:id="@+id/et_self_username"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="请输入修改后的笔名"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+        <!-- 第二个文本编辑框  输入签名 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_self_signature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="签  名："/>
+            <EditText
+                android:id="@+id/et_self_signature"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:inputType="textPassword"
+                android:hint="请输入修改后的签名" />
+        </LinearLayout>
 
-       <LinearLayout
-           android:layout_width="0dp"
-           android:layout_height="match_parent"
-          android:orientation="vertical"
-           android:layout_weight="1">
-           <EditText
-               android:id="@+id/self_name"
-               android:layout_width="match_parent"
-               android:layout_height="0dp"
-               android:layout_weight="1"
-               android:maxLines="1"
-               />
-           <EditText
-               android:id="@+id/self_signature"
-               android:layout_width="match_parent"
-               android:layout_height="0dp"
-               android:layout_weight="1"
-               android:maxLines="3"
-               />
-       </LinearLayout>
+        <!-- 第二个文本编辑框  输入签名 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_self_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="性  别："/>
 
-        <ImageView
-            android:src="@drawable/qq_nor"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+            <CheckBox
+                android:id="@+id/checkBox_1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="男"/>
 
-            />
+            <CheckBox
+                android:id="@+id/checkBox_2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="女"/>
+
+        </LinearLayout>
+
     </LinearLayout>
-
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/selfinfor_save" />
+
+
+
 
 </LinearLayout>
