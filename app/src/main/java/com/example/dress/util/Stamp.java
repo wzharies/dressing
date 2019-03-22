@@ -14,6 +14,8 @@ public class Stamp {
         this.isGet = isGet;
     }
 
+
+
     public int getImageSourse() {
         return imageSourse;
     }

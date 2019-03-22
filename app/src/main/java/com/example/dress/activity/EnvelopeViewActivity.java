@@ -53,7 +53,7 @@ public class EnvelopeViewActivity extends AppCompatActivity {
 
             case R.id.write_letter:
                 Intent intent = new Intent(this,StampViewActivity.class);
-                intent.putExtra("tag",(int)1); //1 第一个页面即分组的页面
+                intent.putExtra("tag",(int)0); //1 第一个页面即分组的页面
                 startActivity(intent);
 
         }
