@@ -17,6 +17,8 @@ import com.example.dress.util.RetrofitManager;
 import com.example.dress.util.jsondata.ResponseData;
 import com.google.gson.JsonObject;
 
+import java.util.regex.Pattern;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -105,7 +107,7 @@ public class RegisterActivity extends BaseActivity {
 
     protected boolean isLegal(String phone,String password1,String password2,String invitation,String codes){
         if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(password1) && !TextUtils.isEmpty(password2)) {
-            if(phone.length()==11) {
+            if(phone.length()==11&&isNum(phone)) {
                 if (password1.equals(password2)) {
                     if (!TextUtils.isEmpty(codes) && realCode.equals(codes)) {
                         if(invitation.equals(invitationcode)) {
@@ -129,4 +131,9 @@ public class RegisterActivity extends BaseActivity {
         }
         return false;
     }
+    private boolean isNum(String phone){
+        Pattern pattern = Pattern.compile("[0-9]*");
+        return pattern.matcher(phone).matches();
+    }
+
 }
