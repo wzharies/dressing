@@ -61,6 +61,7 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull StampAdapter.ViewHolder viewHolder, int i) {
         Stamp stamp = stampList.get(i);
         viewHolder.stampImage.setImageResource(stamp.getImageSourse());
+        viewHolder.stampText.setText(stamp.getText());
        // viewHolder.text.setText(stamp.getText());
         //viewHolder.sender.setText(stamp.getSender());
         //viewHolder.receiver.setText("亲爱的"+stamp.getReceiver()+":");
@@ -81,6 +82,7 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
             stampView=view;
             stampImage = (ImageView)view.findViewById(R.id.stamp_iamge);
             stampText = (TextView)view.findViewById(R.id.stamp_text);
+
         }
     }
 }

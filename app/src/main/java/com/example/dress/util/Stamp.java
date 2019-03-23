@@ -4,7 +4,7 @@ public class Stamp {
     private int imageSourse;            //图片的id
     private int groupIndex;             //第几组的下标
     private int index;                  //第几组的第几个的下标
-    private int isGet;                  //是否获得邮票标记（1：获得/0：没有）
+    private int isGet;                  //是否获得邮票标记（1：获得/0：没有）//改为邮票数量
     private String text="";                //用来显示图片下面的话
 
     private double money;               //邮票价格
@@ -17,9 +17,11 @@ public class Stamp {
         this.money=money;
     }
 
+
     public double getMoney(){return money;}
 
     public void setMoney(double money){this.money=money;}
+
 
     public int getImageSourse() {
         return imageSourse;

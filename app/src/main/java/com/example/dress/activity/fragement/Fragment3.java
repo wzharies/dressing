@@ -106,6 +106,7 @@ public class Fragment3 extends Fragment {
                     .load(R.drawable.sex1)
                     .into(page3_avatar);
         }else if(cache.getUser().getSex()==2){
+
             Glide.with(this)
                     .load(R.drawable.sex2)
                     .into(page3_avatar);

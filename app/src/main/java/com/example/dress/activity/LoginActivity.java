@@ -54,7 +54,7 @@ public class LoginActivity extends BaseActivity{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_enter: {
-                login();
+                login_temp();
                 break;
             }
             case R.id.tv_find_pwd: {
@@ -67,6 +67,23 @@ public class LoginActivity extends BaseActivity{
         }
     }
 
+    protected  void login_temp(){
+        User user = new User();
+
+        user.setPhone("18108646556");
+        user.setId(100002);
+        user.setSex(2);
+        user.setSignature("fuck");
+        user.setUsername("shit");
+        user.setToken("13427467293460");
+
+        user.save();
+        cache.setUser(user);
+
+        Intent intent = new Intent(LoginActivity.this,ViewActivity.class);
+        startActivity(intent);
+        finish();
+    }
     protected void login(){
         String phone = et_phone.getText().toString();
         String password = et_pwd.getText().toString();
