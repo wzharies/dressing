@@ -7,12 +7,19 @@ public class Stamp {
     private int isGet;                  //是否获得邮票标记（1：获得/0：没有）
     private String text="";                //用来显示图片下面的话
 
-    public Stamp(int imageSourse, int groupIndex, int index, int isGet) {
+    private double money;               //邮票价格
+
+    public Stamp(int imageSourse, int groupIndex, int index, int isGet,double money) {
         this.imageSourse = imageSourse;
         this.groupIndex = groupIndex;
         this.index = index;
         this.isGet = isGet;
+        this.money=money;
     }
+
+    public double getMoney(){return money;}
+
+    public void setMoney(double money){this.money=money;}
 
     public int getImageSourse() {
         return imageSourse;

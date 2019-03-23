@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +35,9 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
         }
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.stamp_item,viewGroup,false);
         final StampAdapter.ViewHolder holder = new StampAdapter.ViewHolder(view);
+
+
+
         holder.stampImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +81,6 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
             stampView=view;
             stampImage = (ImageView)view.findViewById(R.id.stamp_iamge);
             stampText = (TextView)view.findViewById(R.id.stamp_text);
-
         }
     }
 }

@@ -38,9 +38,9 @@ public class StampViewActivity extends AppCompatActivity {
         }
     }
     private void initStampList(){
-        Stamp temp1 = new Stamp(R.drawable.text_notyet,1,0,1);
-        Stamp temp2 = new Stamp(R.drawable.text_notyet,1,0,1);
-        Stamp temp3 = new Stamp(R.drawable.text_notyet,1,0,1);
+        Stamp temp1 = new Stamp(R.drawable.text_notyet,1,0,1,10);
+        Stamp temp2 = new Stamp(R.drawable.text_notyet,1,0,1,10);
+        Stamp temp3 = new Stamp(R.drawable.text_notyet,1,0,1,10);
         temp1.setText("0/9");
         temp2.setText("0/9");
         stamps.add(temp1);stamps.add(temp2);stamps.add(temp3);

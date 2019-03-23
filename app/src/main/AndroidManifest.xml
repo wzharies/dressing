@@ -21,7 +21,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.ShopActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            ></activity>
+            >
+		</activity>
         <activity android:name=".activity.SelfInforActivity" />
         <activity
             android:name=".activity.WtringActivity"
@@ -36,7 +37,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.BaseActivity" />
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.ViewActivity">
+        <activity android:name=".activity.ViewActivity"/>
 
         <activity android:name=".activity.MainActivity">
 
