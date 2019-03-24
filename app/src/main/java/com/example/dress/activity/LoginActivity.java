@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dress.R;
-import com.example.dress.util.ApiService;
+import com.example.dress.util.Api.ApiService;
 import com.example.dress.util.RetrofitManager;
 import com.example.dress.util.cache;
 import com.example.dress.util.jsondata.JsonUser;
@@ -46,7 +46,7 @@ public class LoginActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
         ButterKnife.bind(this);
     }
 

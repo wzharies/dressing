@@ -7,20 +7,26 @@ import org.litepal.crud.LitePalSupport;
 import java.io.Serializable;
 
 public class Envelope extends LitePalSupport implements Serializable {
+        private int stampviewid;
         private String text;
         private String sender;
         private String receiver;
-        private int stampViewId;
+        private String timestamp;
+        private int type;    // 0回复  1陌生人  2写个自己的信
+
+        public Envelope(){
+
+        }
 
     public Envelope(String text,String sender,String receiver,int stampViewId){
         this.receiver=receiver;
         this.sender=sender;
-        this.stampViewId=stampViewId;
+        this.stampviewid=stampViewId;
         this.text=text;
     }
     //get参数
     public int getStampViewId() {
-        return stampViewId;
+        return stampviewid;
     }
 
     public String getReceiver() {
@@ -45,10 +51,26 @@ public class Envelope extends LitePalSupport implements Serializable {
     }
 
     public void setStampViewId(int stampViewId) {
-        this.stampViewId = stampViewId;
+        this.stampviewid = stampViewId;
     }
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

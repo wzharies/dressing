@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.dress.R;
-import com.example.dress.util.ApiService;
+import com.example.dress.util.Api.ApiService;
 import com.example.dress.util.Code;
 import com.example.dress.util.RetrofitManager;
 import com.example.dress.util.jsondata.ResponseData;

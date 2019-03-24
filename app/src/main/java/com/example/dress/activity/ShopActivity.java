@@ -1,6 +1,5 @@
 package com.example.dress.activity;
 
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,17 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.GridLayout;
 import android.widget.Toast;
 
 import com.example.dress.R;
 import com.example.dress.adapter.ShopStampsAdapter;
-import com.example.dress.adapter.StampAdapter;
-import com.example.dress.util.Stamp;
+import com.example.dress.util.Stamp.Stamp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ShopActivity extends AppCompatActivity {
 

@@ -1,6 +1,5 @@
 package com.example.dress.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,17 +9,17 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.dress.R;
 import com.example.dress.adapter.StampAdapter;
-import com.example.dress.util.Stamp;
+import com.example.dress.util.GetResouce;
+import com.example.dress.util.Stamp.Stamp;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StampViewActivity extends AppCompatActivity {
+public class StampViewActivity extends BaseActivity {
 
     int[][] stampList=new int[11][11];              //邮票信息的二维数组
 
@@ -54,13 +53,16 @@ public class StampViewActivity extends AppCompatActivity {
         }
     }
 
-    private void initStampList(){
-        Stamp temp1 = new Stamp(R.drawable.text_notyet,1,0,1,10);
-        Stamp temp2 = new Stamp(R.drawable.text_notyet,1,0,1,10);
-        Stamp temp3 = new Stamp(R.drawable.text_notyet,1,0,1,10);
+    private void initStampList() {
+        Stamp temp1 = new Stamp(R.drawable.text_notyet, 1, 0, 1, 10);
+        Stamp temp2 = new Stamp(R.drawable.text_notyet, 1, 0, 1, 10);
+        Stamp temp3 = new Stamp(R.drawable.text_notyet, 1, 0, 1, 10);
         temp1.setText("0/9");
         temp2.setText("0/9");
-        stamps.add(temp1);stamps.add(temp2);stamps.add(temp3);
+        stamps.add(temp1);
+        stamps.add(temp2);
+        stamps.add(temp3);
+    }
 
     private void initStampList_0(){
         getStampMecessage();
@@ -74,7 +76,7 @@ public class StampViewActivity extends AppCompatActivity {
             for(k=1;k<=9;k++){
                 if(stampList[i][k]>0){
                     count++;
-                    temp[i]=new Stamp(getResource(i, k), i, k, 1);
+                    temp[i]=new Stamp(GetResouce.getResource(i, k), i, k, 1);
                     temp[i].setText(String.valueOf(count)+"/"+String.valueOf(sum));
                 }
             }
@@ -94,7 +96,7 @@ public class StampViewActivity extends AppCompatActivity {
         for(i=1;i<10;i++){
             temp[i] = new Stamp(R.drawable.text_notyet, 1, 0, 1);
             if(stampList[group][i]>0) {
-                temp[i] = new Stamp(getResource(group, i), group, i, stampList[group][i]);
+                temp[i] = new Stamp(GetResouce.getResource(group, i), group, i, stampList[group][i]);
                 temp[i].setText(String.valueOf(stampList[group][i]));
             }
         }
@@ -136,31 +138,5 @@ public class StampViewActivity extends AppCompatActivity {
         }
         return true;
     }
-    /*
-    另一只种获取id的方法
-    public int getImageId(int group,int index){
-        String s="stamp"+String.valueOf(group)+"_"+String.valueOf(index)+".png";
-        Log.i("Imageid",s);
-        Context ctx=getBaseContext();
-        int resId = getResources().getIdentifier(s,"darwable",ctx.getPackageName());
-        return resId;
-    }
-    */
 
-    //通过反射机制获取id
-    public int  getResource(int group,int index){
-        String imageName="stamp"+String.valueOf(group)+"_"+String.valueOf(index);
-        Class drawble = R.drawable.class;
-        Log.i("Imageid",imageName);
-        try {
-            Field field = drawble.getField(imageName);
-            int resId = field.getInt(imageName);
-            return resId;
-        } catch (NoSuchFieldException e) {//如果没有在"mipmap"下找到imageName,将会返回0
-            return 0;
-        } catch (IllegalAccessException e) {
-            return 0;
-        }
-
-    }
 }

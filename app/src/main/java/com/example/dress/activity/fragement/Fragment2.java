@@ -3,21 +3,44 @@ package com.example.dress.activity.fragement;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.dress.R;
 import com.example.dress.adapter.EnvelopeAdapter;
-import com.example.dress.util.Envelope;
+import AllLetter;
+import com.example.dress.util.Api.ApiService;
+import com.example.dress.util.Letter.Letter;
+import com.example.dress.util.Letter.PerLetter;
+import com.example.dress.util.RetrofitManager;
+import com.example.dress.util.cache;
+import com.example.dress.util.jsondata.ResponseData;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class Fragment2 extends Fragment {
+    @BindView(R.id.swipe_refresh) SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.recycle_view) RecyclerView recyclerView;
+
+    private EnvelopeAdapter adapter=null;
+    private List<Letter> envelopeList;
+
     public Fragment2() {
         super();
     }
@@ -27,6 +50,7 @@ public class Fragment2 extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +59,93 @@ public class Fragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragement2, container, false);
-        List<Envelope> envelopes=new ArrayList<>();
-        Envelope temp1= new Envelope("  我国历史文化悠久，是有名的礼仪之邦。人们的社会交往和思想感情交流，大多通过一定的礼仪形式和一定的文化活动方式来进行。在实际生活中，每个人都经常使用到一系列的应用文，如传统的书信、名片、柬贴、启事、题诗题词、对对联等，现代的如电报、传真、特快专递、电子邮件等。这些应用写作包含着丰富的礼仪内容，具有中华民族浓厚的文化色彩。\n" +
-                "书信是一种向特定对象传递信息、交流思想感情的应用文书。“信”在古文中有音讯、消息之义，如“阳气极於上，阴信萌乎下。”（扬雄：《太玄经·应》）；另外，“信”也有托人所传之言可信的意思，不论是托人捎的口信，还是通过邮差邮递的书信用语言文字向特定对象传递信息和进行思想感情交流的信，一是有运用文字述说事情原委和表达自己思想感情的能力；二是具备相应的书写工具；三是有人进行传递。亲笔给亲戚朋友写信，不仅可以传达自己的思想感情，而且能给受信人以“见字如面”的亲切感；科技不断进步，又相继出现了电话、电报、邮寄录音带、录像带、电子邮件等交流信息的手段，可以预见，未来电子邮件这一新兴的手段会被越来越多的人运用。随着社会的发展，人与社会的关系也在进行重新建构，书信的运用除传统用法，即公函私函之外，一个新的发展动向便是原先私函类中因为个人需要而向政府机构、企事业单位、知名学者等个人所发的事务性的信件，这一类信件的使用量逐渐增多，值得注意。我们将其称为个人公文。","wwhhh","wangzhenghao",R.drawable.stamp_1);
-        envelopes.add(temp1);
-        envelopes.add(temp1);
-        envelopes.add(temp1);
-        envelopes.add(temp1);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycle_view);
+        ButterKnife.bind(this,view);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        EnvelopeAdapter adapter = new EnvelopeAdapter(envelopes);
+        if(cache.getLetters()==null){
+            adapter = new EnvelopeAdapter(new ArrayList<Letter>());
+        }else {
+            adapter = new EnvelopeAdapter(cache.getLetters().getAllFirstLetter());
+        }
         recyclerView.setAdapter(adapter);
         return view;
+    }
+
+    private void refresh(){
+        JsonObject jsonuser = new JsonObject();
+        jsonuser.addProperty("id",cache.getUser().getId());
+        RetrofitManager.create(ApiService.class).getAllLetter(cache.getUser().getToken(),jsonuser)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseData<List<Letter>>>(){
+                    @Override
+                    public void accept(@NonNull ResponseData<List<Letter>> rd) throws Exception {
+                        if(rd!=null){
+                            Toast.makeText(getActivity(),rd.getMsg(),Toast.LENGTH_SHORT);
+                            if(rd.getRet()==0){
+                                list_to_Allletter(rd.getData());
+                            }
+                        }
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                });
+    }
+
+    private void list_to_Allletter(List<Letter> letters){
+        AllLetter allletters = new AllLetter();
+        Map<Integer,Integer> position_to_id=new HashMap<Integer, Integer>();
+        Map<Integer,String> id_to_name=new HashMap<Integer, String>();
+        Map<Integer,Integer> id_to_position=new HashMap<Integer, Integer>();
+        List<PerLetter> allletter=new ArrayList<PerLetter>();
+
+        int id = cache.getUser().getId();
+        for(Letter letter:letters){
+            if(letter.getReceiverid()==id){
+                if(id_to_name.get(letter.getSenderid())==null){
+                    id_to_name.put(letter.getSenderid(),letter.getSender());
+                    id_to_position.put(letter.getSenderid(),allletter.size());
+                    position_to_id.put(allletter.size(),letter.getSenderid());
+                    List<Letter> perletter = new ArrayList<Letter>();
+                    perletter.add(letter);
+                    allletter.add(new PerLetter(letter.getSenderid(),perletter));
+                }else{
+                    allletter.get(id_to_position.get(letter.getSenderid())).getPerletter().add(letter);
+                }
+            }else if(letter.getSenderid()==id){
+                if(id_to_name.get(letter.getReceiverid())==null){
+                    if(letter.getType()==0){
+                        id_to_name.put(letter.getReceiverid(),letter.getReceiver());
+                        id_to_position.put(letter.getReceiverid(),allletter.size());
+                        position_to_id.put(allletter.size(),letter.getReceiverid());
+                        List<Letter> perletter = new ArrayList<Letter>();
+                        perletter.add(letter);
+                        allletter.add(new PerLetter(letter.getReceiverid(),perletter));
+                    }
+                }else{
+                    allletter.get(id_to_position.get(letter.getReceiverid())).getPerletter().add(letter);
+                }
+            }
+
+        }
+        allletters.setAllletter(allletter);
+        allletters.setId_to_name(id_to_name);
+        allletters.setId_to_position(id_to_position);
+        allletters.setPosition_to_id(position_to_id);
+        allletters.updateAllFirstLetter();
+        cache.setLetters(allletters);
+
+        adapter.changeDate(cache.getLetters().getAllFirstLetter());
     }
 }

@@ -21,4 +21,9 @@
         <item name="android:layout_gravity">center_horizontal</item>
     </style>
 
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/black</item>
+    </style>
+
+
 </resources>

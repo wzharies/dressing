@@ -3,10 +3,13 @@
 
     <dbname value="database" />
 
-    <version value="4" />
+    <version value="1" />
 
     <list>
         <mapping class="com.example.dress.util.User" />
-        <mapping class="com.example.dress.util.Envelope"/>
+        <mapping class="com.example.dress.util.Letter.AllLetter"/>
+        <mapping class="com.example.dress.util.Letter.PerLetter"/>
+        <mapping class="com.example.dress.util.Letter.Letter"/>
+
     </list>
 </litepal>

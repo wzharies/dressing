@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,18 @@ import android.widget.TextView;
 
 import com.example.dress.R;
 import com.example.dress.activity.EnvelopeViewActivity;
-import com.example.dress.util.Envelope;
+import com.example.dress.activity.More_letterActivity;
+import com.example.dress.util.GetResouce;
+import com.example.dress.util.Letter.Letter;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHolder> {
-    private List<Envelope> envelopeList;
+    private List<Letter> envelopeList;
     private Context mContext;
 
-    public EnvelopeAdapter(List<Envelope> envelopes)
+    public EnvelopeAdapter(List<Letter> envelopes)
     {
         envelopeList=envelopes;
     }
@@ -36,7 +40,7 @@ public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                Envelope envetemp = envelopeList.get(position);
+                Letter envetemp = envelopeList.get(position);
                 Intent intent = new Intent(mContext, EnvelopeViewActivity.class);
                 intent.putExtra("envelope_data",envetemp);
                 mContext.startActivity(intent);
@@ -45,7 +49,9 @@ public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHo
         holder.sender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(mContext, More_letterActivity.class);
+                intent.putExtra("position",holder.getAdapterPosition());
+                mContext.startActivity(intent);
             }
         });
         return holder;
@@ -53,11 +59,13 @@ public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Envelope envelope = envelopeList.get(i);
-        viewHolder.stampImage.setImageResource(envelope.getStampViewId());
+        Letter envelope = envelopeList.get(i);
         viewHolder.text.setText(envelope.getText());
         viewHolder.sender.setText(envelope.getSender());
         viewHolder.receiver.setText("亲爱的"+envelope.getReceiver()+":");
+        int group = envelope.getStampviewid()/100;
+        int index = envelope.getStampviewid()%100;
+        viewHolder.stampImage.setImageResource(GetResouce.getResource(group,index));
     }
 
     @Override
@@ -80,4 +88,25 @@ public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHo
             receiver=(TextView)view.findViewById(R.id.receiver_text);
         }
     }
+
+    //  添加数据
+    public void addData(int position,Letter envelope) {
+//      在list中添加数据，并通知条目加入一条
+        envelopeList.add(position, envelope);
+        //添加动画
+        notifyItemInserted(position);
+    }
+    //  删除数据
+    public void removeData(int position) {
+        envelopeList.remove(position);
+        //删除动画
+        notifyItemRemoved(position);
+        notifyDataSetChanged();
+    }
+
+    public void changeDate(List<Letter> envelopeList){
+        this.envelopeList = envelopeList;
+        notifyDataSetChanged();
+    }
+
 }
