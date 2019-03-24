@@ -2,9 +2,11 @@ package com.example.dress.util;
 
 import android.widget.ImageView;
 
+import org.litepal.crud.LitePalSupport;
+
 import java.io.Serializable;
 
-public class Envelope implements Serializable {
+public class Envelope extends LitePalSupport implements Serializable {
         private int stampviewid;
         private String text;
         private String sender;

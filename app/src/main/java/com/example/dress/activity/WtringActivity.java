@@ -91,6 +91,9 @@ public class WtringActivity extends AppCompatActivity {
             case R.id.send_message:
                 sendMessage();
                 break;
+            case android.R.id.home:
+                finish();
+                break;
 
 
         }

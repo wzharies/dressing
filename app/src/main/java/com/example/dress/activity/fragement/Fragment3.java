@@ -16,8 +16,16 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.dress.R;
 import com.example.dress.activity.SelfInforActivity;
+
+
+import com.example.dress.activity.ShopActivity;
 import com.example.dress.adapter.ActivityCollector;
 import com.example.dress.util.cache;
+
+
+import com.example.dress.adapter.ActivityCollector;
+import com.example.dress.util.cache;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,12 +53,15 @@ public class Fragment3 extends Fragment {
             case R.id.page3_self:
                 //Log.d("tag","here is Toast");
                 Intent intent=new Intent(getActivity(), SelfInforActivity.class);
+
                 startActivity(intent);
                 break;
             case R.id.mydove:
+
                 Toast.makeText(getActivity(),"mydove",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.shop:
+                startActivity(new Intent(getActivity(), ShopActivity.class));
                 Toast.makeText(getActivity(),"暂未开放",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.set:
@@ -105,6 +116,7 @@ public class Fragment3 extends Fragment {
                     .load(R.drawable.sex1)
                     .into(page3_avatar);
         }else if(cache.getUser().getSex()==2){
+
             Glide.with(this)
                     .load(R.drawable.sex2)
                     .into(page3_avatar);

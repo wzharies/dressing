@@ -51,15 +51,17 @@ public class EnvelopeViewActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case android.R.id.home:
+            case android.R.id.home: {
                 finish();
                 return true;
+            }
 
-            case R.id.reply_item:
-                Intent intent = new Intent(this,WtringActivity.class);
-                intent.putExtra("sender",envelope.getSender());
-                intent.putExtra("reciver",envelope.getReceiver());
+            case R.id.write_letter: {
+                Intent intent = new Intent(this, StampViewActivity.class);
+                intent.putExtra("tag", (int) 0); //1 第一个页面即分组的页面
                 startActivity(intent);
+                break;
+            }
 
         }
         return super.onOptionsItemSelected(item);

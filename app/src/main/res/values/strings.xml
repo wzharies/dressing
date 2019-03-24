@@ -24,10 +24,14 @@
 
 
 
+
+    <string name="pref_title_vibrate">Vibrate</string>
+
     <string name="page3_setting">设置</string>
     <string name="page3_exit">退出登录</string>
     <string name="page3_mydove">我的鸽子</string>
     <string name="page3_shop">商城</string>
     <string name="selfinfor_save">保存</string>
+
 
 </resources>

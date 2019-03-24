@@ -10,5 +10,6 @@
         <mapping class="com.example.dress.util.AllLetter"/>
         <mapping class="com.example.dress.util.PerLetter"/>
         <mapping class="com.example.dress.util.Letter"/>
+
     </list>
 </litepal>

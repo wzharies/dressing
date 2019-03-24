@@ -9,6 +9,8 @@ import org.litepal.LitePal;
 public class cache {
     private static AllLetter letters=null;
     private static User user=null;
+
+
     public static void getCache(){
         SQLiteDatabase db = LitePal.getDatabase();
         letters = LitePal.findFirst(AllLetter.class);
