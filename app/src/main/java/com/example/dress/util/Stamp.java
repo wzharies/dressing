@@ -7,9 +7,9 @@ public class Stamp {
     private int isGet;                  //是否获得邮票标记（1：获得/0：没有）//改为邮票数量
     private String text="";                //用来显示图片下面的话
 
-    private double money;               //邮票价格
+    private int money;               //邮票价格
 
-    public Stamp(int imageSourse, int groupIndex, int index, int isGet,double money) {
+    public Stamp(int imageSourse, int groupIndex, int index, int isGet,int money) {
         this.imageSourse = imageSourse;
         this.groupIndex = groupIndex;
         this.index = index;
@@ -18,9 +18,9 @@ public class Stamp {
     }
 
 
-    public double getMoney(){return money;}
+    public int getMoney(){return money;}
 
-    public void setMoney(double money){this.money=money;}
+    public void setMoney(int money){this.money=money;}
 
 
     public int getImageSourse() {

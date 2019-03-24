@@ -32,10 +32,10 @@ public class ShopActivity extends AppCompatActivity {
     private ShopStampsAdapter shopStampsAdapter;
 
     private void initStamps(){
-        int a[]={-1,-1};
+        int a[][]=new int[100][3];
         shopstampslist.clear();
         shopstamps.clear();
-        shopstampslist.add(a);
+       // shopstampslist.add(a);
         Stamp stamp1=new Stamp(R.drawable.ic_sync_black_24dp,1,1,0,10);
         Stamp stamp2=new Stamp(R.drawable.ic_info_black_24dp,1,2,0,10);
         Stamp stamp3=new Stamp(R.drawable.ic_notifications_black_24dp,2,1,0,10);
@@ -43,26 +43,19 @@ public class ShopActivity extends AppCompatActivity {
         shopstamps.add(stamp2);
         shopstamps.add(stamp3);
         for(int i=0;i<shopstamps.size();i++){
-            if(findGroup(shopstamps.get(i).getGroupIndex())!=-1){
-               a[0]=shopstampslist.get(findGroup(shopstamps.get(i).getGroupIndex()))[0];
-               a[1]=shopstampslist.get(findGroup(shopstamps.get(i).getGroupIndex()))[1]+1;
-                //a[]={shopstampslist.get(findGroup(shopstamps.get(i).getGroupIndex()))[0],shopstampslist.get(findGroup(shopstamps.get(i).getGroupIndex()))[1]+1};
-                shopstampslist.set(findGroup(shopstamps.get(i).getGroupIndex()),a);
+            if(a[shopstamps.get(i).getGroupIndex()][0]==shopstamps.get(i).getGroupIndex()){
+               a[shopstamps.get(i).getGroupIndex()][1]=a[shopstamps.get(i).getGroupIndex()][1]+1;
+                a[shopstamps.get(i).getGroupIndex()][2]=a[shopstamps.get(i).getGroupIndex()][2]+shopstamps.get(i).getMoney();
+
             }else{
-                a[0]=shopstampslist.get(findGroup(shopstamps.get(i).getGroupIndex()))[0];
-                a[1]=1;
-                shopstampslist.add(a);
+                a[shopstamps.get(i).getGroupIndex()][0]=shopstamps.get(i).getGroupIndex();
+                a[shopstamps.get(i).getGroupIndex()][1]=1;
+                a[shopstamps.get(i).getGroupIndex()][2]=shopstamps.get(i).getMoney();
+                shopstampslist.add(a[shopstamps.get(i).getGroupIndex()]);
             }
         }
     }
-    private int findGroup(int key){
-        for(int i=0;i<shopstampslist.size();i++){
-            if(key==shopstampslist.get(i)[0]){
-                return i;
-            }
-        }
-        return -1;
-    }
+
 
 
 

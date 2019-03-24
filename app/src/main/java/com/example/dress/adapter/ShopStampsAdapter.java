@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dress.R;
-import com.example.dress.activity.StampViewActivity;
+
 import com.example.dress.util.Stamp;
 
 
@@ -33,12 +34,14 @@ public class ShopStampsAdapter extends RecyclerView.Adapter<ShopStampsAdapter.Vi
         CardView cardView;
         ImageView imageView;
         TextView count;
+        TextView value;
 
         public ViewHolder(View view) {
             super(view);
             cardView = (CardView) view;
             imageView = (ImageView) view.findViewById(R.id.shopstamps_imageview);
             count = (TextView) view.findViewById(R.id.shopstamps_textview);
+            value=(TextView) view.findViewById(R.id.shopstamps_textview1);
         }
     }
 
@@ -68,7 +71,9 @@ public class ShopStampsAdapter extends RecyclerView.Adapter<ShopStampsAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             int i[]=mstampList.get(position);
+        Log.d("ssa",String.valueOf(i[1]));
             holder.count.setText("共 "+i[1]+"张图片");
+            holder.value.setText("共"+i[2]+"元");
         Glide.with(mContext).load(R.drawable.ic_info_black_24dp).into(holder.imageView);
     }
 
