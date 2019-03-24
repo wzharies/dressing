@@ -36,15 +36,20 @@ public class StampViewActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.stamp_recycleView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
+        StampAdapter stampAdapter=null;
         //设置内容
         //其中分为两种加载方法
-        if(tag==0)                                      //如果是0就加载所有组的内容
+        if(tag==0) {                            //如果是0就加载所有组的内容
             initStampList_0();
-        else
-            initStampList_1(group_index);                             //如果不是就加载下标所在那个组组里面的所有邮票
+            stampAdapter = new StampAdapter(stamps,0);
+        }
+        else {
+            initStampList_1(group_index);
+            stampAdapter = new StampAdapter(stamps,1);
+        }//如果不是就加载下标所在那个组组里面的所有邮票
 
 
-        StampAdapter stampAdapter = new StampAdapter(stamps);
+
         recyclerView.setAdapter(stampAdapter);
 
         //设置toolbar
@@ -60,8 +65,6 @@ public class StampViewActivity extends AppCompatActivity {
         for(i=1;i<=7;i++) {
             int count=0,sum=9;
             temp[i] = new Stamp(R.drawable.text_notyet, 1, 0, 1);
-            System.out.print(stampList[2][2]);
-            System.out.print(stampList[i][3]);
             for(k=1;k<=9;k++){
                 if(stampList[i][k]>0){
                     count++;
@@ -83,7 +86,7 @@ public class StampViewActivity extends AppCompatActivity {
         Stamp[] temp=new Stamp[10];
         int i,k;
         for(i=1;i<10;i++){
-            temp[i] = new Stamp(R.drawable.text_notyet, 1, 0, 1);
+            temp[i] = new Stamp(R.drawable.text_notyet, 0, 0, 0);
             if(stampList[group][i]>0) {
                 temp[i] = new Stamp(getResource(group, i), group, i, stampList[group][i]);
                 temp[i].setText(String.valueOf(stampList[group][i]));
