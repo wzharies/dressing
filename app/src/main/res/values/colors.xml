@@ -12,8 +12,8 @@
     <color name="orange">#FFA500</color>
     <color name="red">#FF0000</color>
     <color name="gold">#FFD700</color>
-    <color name="yellow">#FFFF00</color>
-    <color name="blue">#0000FF</color>
+    <color name="yellow">#F1BE06</color>
+    <color name="blue">#00B0FF</color>
     <color name="purple">#800080</color>
     <color name="pink">#FFC0CB</color>
     <color name="greens">#4cbfb5</color>
@@ -39,4 +39,9 @@
     <color name="grey2">#888888</color>
     <!-- 淡灰 -->
     <color name="dangrey">#DDDDDD</color>
+    <!--清新的绿色-->
+    <color name="green_button">#92EE29</color>
+
+
+
 </resources>

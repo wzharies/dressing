@@ -37,7 +37,7 @@ public class Fragment3 extends Fragment {
     }
 
 
-
+/*
     @OnClick({R.id.page3_self,R.id.set,R.id.mydove,R.id.exit,R.id.shop})
     public void OnClick(View view){
 
@@ -61,8 +61,18 @@ public class Fragment3 extends Fragment {
                 default:
                     break;
         }
-    }
+    }*/
+    @OnClick({R.id.page3_self})
+    public void OnClick(View view) {
 
+        switch (view.getId()) {
+            case R.id.page3_self:
+                //Log.d("tag","here is Toast");
+                Intent intent = new Intent(getActivity(), SelfInforActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,7 +81,7 @@ public class Fragment3 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-         View view=inflater.inflate(R.layout.fragement3, container, false);
+         View view=inflater.inflate(R.layout.new_fragement3, container, false);
         //tx=(TextView) view.findViewById(R.id.page3_1_name);
         ButterKnife.bind(this,view);
         fileload();
@@ -86,7 +96,7 @@ public class Fragment3 extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        initselfinfo();
+        fileload();
     }
 
     protected void fileload(){

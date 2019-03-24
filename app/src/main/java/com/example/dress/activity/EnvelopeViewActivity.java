@@ -17,16 +17,20 @@ import com.example.dress.R;
 import com.example.dress.util.Envelope;
 
 public class EnvelopeViewActivity extends AppCompatActivity {
+    Envelope envelope=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_envelope_view);
-        Envelope envelope = (Envelope)getIntent().getSerializableExtra("envelope_data");
+
+        envelope= (Envelope)getIntent().getSerializableExtra("envelope_data");
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.envelope_toolbar);
         CollapsingToolbarLayout collapsingToolbar=(CollapsingToolbarLayout)findViewById(R.id.collasping_toolbBar);
         ImageView envelope_Imgae = (ImageView)findViewById(R.id.envelope_image);
         TextView envelope_text = (TextView)findViewById(R.id.envelope_view_text);
+
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null){
@@ -53,6 +57,8 @@ public class EnvelopeViewActivity extends AppCompatActivity {
 
             case R.id.reply_item:
                 Intent intent = new Intent(this,WtringActivity.class);
+                intent.putExtra("sender",envelope.getSender());
+                intent.putExtra("reciver",envelope.getReceiver());
                 startActivity(intent);
 
         }

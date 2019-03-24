@@ -1,22 +1,22 @@
 package com.example.dress.activity;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.dress.R;
-import com.example.dress.activity.fragement.Fragment3;
-import com.example.dress.util.ApiService;
+import com.example.dress.util.Api.ApiService;
 import com.example.dress.util.RetrofitManager;
 import com.example.dress.util.cache;
+import com.example.dress.util.jsondata.JsonUser;
 import com.example.dress.util.jsondata.ResponseData;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,24 +65,23 @@ public class SelfInforActivity extends BaseActivity {
                 RetrofitManager.create(ApiService.class).updateinfo(cache.getUser().getToken(),json)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Consumer<ResponseData<Object>>(){
+                        .subscribe(new Consumer<ResponseData<Map<String,Object>>>(){
                             @Override
-                            public void accept(ResponseData<Object> rd) throws Exception {
+                            public void accept(ResponseData<Map<String,Object>> rd) throws Exception {
                                 if(rd==null){
                                     Toast.makeText(SelfInforActivity.this,"连接不到服务器",Toast.LENGTH_SHORT);
                                 }else if(rd.getRet()==0){
-                                    updateinfo();
-
+                                    Map<String,Object> map = rd.getData();
+                                    Log.i("updateinfo",map.toString());
+                                    Gson gson = new Gson();
+                                    JsonUser jsonuser = gson.fromJson(map.toString(),JsonUser.class);
+                                    cache.getUser().setUsername(jsonuser.getUsername()).setSignature(jsonuser.getSignature()).setSex(jsonuser.getSex()).save();
                                     Log.i("updateinfo",rd.getMsg());
                                     Toast.makeText(SelfInforActivity.this,rd.getMsg(),Toast.LENGTH_SHORT);
-                                    Intent intent=new Intent(SelfInforActivity.this, Fragment3.class);
-                                    startActivity(intent);
                                     finish();
                                 }else if(rd.getRet()==-1){
                                     Log.i("updateinfo",rd.getMsg());
                                     Toast.makeText(SelfInforActivity.this,rd.getMsg(),Toast.LENGTH_SHORT);
-                                    Intent intent=new Intent(SelfInforActivity.this, Fragment3.class);
-                                    startActivity(intent);
                                     finish();
                                 }
                             }
@@ -121,10 +120,6 @@ public class SelfInforActivity extends BaseActivity {
         }else if(cache.getUser().getSex()==2){
             check_2.setChecked(true);
         }
-    }
-
-    protected void updateinfo(){
-        cache.getUser().setUsername(name).setSignature(signature).setSex(sex);
     }
 
 }

@@ -4,9 +4,23 @@
     <string name="item_title_1">底部导航之布局</string>
     <string name="item_title_2">底部导航之BottomNavigationView</string>
 
-    <string name="menu_bottom_navigation1">one</string>
-    <string name="menu_bottom_navigation2">two</string>
-    <string name="menu_bottom_navigation3">three</string>
+    <string name="menu_bottom_navigation1">中心</string>
+    <string name="menu_bottom_navigation2">信件</string>
+    <string name="menu_bottom_navigation3">我的</string>
+
+    <string name="page3_text1">日记</string>
+    <string name="page3_text2">记事本</string>
+    <string name="page3_text3">消息</string>
+
+    <string name="page3_text1_1">我的邮票</string>
+    <string name="page3_text1_2">商城</string>
+    <string name="page3_text1_3">社区</string>
+    <string name="page3_text1_4">邀请码</string>
+
+    <string name="page3_text2_1">新手引导</string>
+    <string name="page3_text2_2">意见反馈</string>
+    <string name="page3_text2_3">设置</string>
+
 
 
 
