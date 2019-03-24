@@ -1,6 +1,6 @@
 package com.example.dress.util.Api;
 
-import com.example.dress.util.Letter;
+import com.example.dress.util.Letter.Letter;
 import com.example.dress.util.jsondata.ResponseData;
 import com.google.gson.JsonObject;
 

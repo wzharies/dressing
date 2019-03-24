@@ -14,17 +14,17 @@ import android.support.v7.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.example.dress.R;
-import com.example.dress.util.Envelope;
+import com.example.dress.util.Letter.Letter;
 
 public class EnvelopeViewActivity extends AppCompatActivity {
-    Envelope envelope=null;
+    Letter envelope=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_envelope_view);
 
-        envelope= (Envelope)getIntent().getSerializableExtra("envelope_data");
+        envelope= (Letter)getIntent().getSerializableExtra("envelope_data");
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.envelope_toolbar);
         CollapsingToolbarLayout collapsingToolbar=(CollapsingToolbarLayout)findViewById(R.id.collasping_toolbBar);
@@ -37,7 +37,7 @@ public class EnvelopeViewActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         collapsingToolbar.setTitle(envelope.getReceiver());
-        Glide.with(this).load(envelope.getStampViewId()).into(envelope_Imgae);
+        Glide.with(this).load(envelope.getStampviewid()).into(envelope_Imgae);
         envelope_text.setText(envelope.getText());
     }
 

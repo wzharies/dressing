@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,10 @@ import android.widget.TextView;
 import com.example.dress.R;
 import com.example.dress.activity.EnvelopeViewActivity;
 import com.example.dress.activity.More_letterActivity;
-import com.example.dress.util.Envelope;
-import com.example.dress.util.Letter;
+import com.example.dress.util.GetResouce;
+import com.example.dress.util.Letter.Letter;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHolder> {
@@ -61,7 +63,9 @@ public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHo
         viewHolder.text.setText(envelope.getText());
         viewHolder.sender.setText(envelope.getSender());
         viewHolder.receiver.setText("亲爱的"+envelope.getReceiver()+":");
-        viewHolder.stampImage.setImageResource(envelope.getStampviewid());
+        int group = envelope.getStampviewid()/100;
+        int index = envelope.getStampviewid()%100;
+        viewHolder.stampImage.setImageResource(GetResouce.getResource(group,index));
     }
 
     @Override

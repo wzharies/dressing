@@ -8,17 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.dress.R;
 import com.example.dress.activity.EnvelopeViewActivity;
-import com.example.dress.activity.More_letterActivity;
-import com.example.dress.util.Envelope;
-import com.example.dress.util.Letter;
-import com.example.dress.util.PerLetter;
-
-import java.util.List;
+import com.example.dress.util.Letter.Letter;
+import com.example.dress.util.Letter.PerLetter;
 
 public class PersonLetterAdapter extends RecyclerView.Adapter<PersonLetterAdapter.ViewHolder>{
     PerLetter perLetter;

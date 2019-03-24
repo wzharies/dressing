@@ -1,14 +1,16 @@
 package com.example.dress.util;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.widget.LinearLayout;
+
+import com.example.dress.util.Letter.AllLetter;
+import com.example.dress.util.Stamp.AllStamp;
 
 import org.litepal.LitePal;
 
 public class cache {
     private static AllLetter letters=null;
     private static User user=null;
+    private static AllStamp allStamp=null;
 
 
     public static void getCache(){
@@ -30,5 +32,13 @@ public class cache {
 
     public static void setLetters(AllLetter letters) {
         cache.letters = letters;
+    }
+
+    public static AllStamp getAllStamp() {
+        return allStamp;
+    }
+
+    public static void setAllStamp(AllStamp allStamp) {
+        cache.allStamp = allStamp;
     }
 }

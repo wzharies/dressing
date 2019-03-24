@@ -13,10 +13,10 @@ import android.widget.Toast;
 
 import com.example.dress.R;
 import com.example.dress.adapter.EnvelopeAdapter;
-import com.example.dress.util.AllLetter;
+import AllLetter;
 import com.example.dress.util.Api.ApiService;
-import com.example.dress.util.Letter;
-import com.example.dress.util.PerLetter;
+import com.example.dress.util.Letter.Letter;
+import com.example.dress.util.Letter.PerLetter;
 import com.example.dress.util.RetrofitManager;
 import com.example.dress.util.cache;
 import com.example.dress.util.jsondata.ResponseData;

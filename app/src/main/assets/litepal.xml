@@ -7,9 +7,9 @@
 
     <list>
         <mapping class="com.example.dress.util.User" />
-        <mapping class="com.example.dress.util.AllLetter"/>
-        <mapping class="com.example.dress.util.PerLetter"/>
-        <mapping class="com.example.dress.util.Letter"/>
+        <mapping class="com.example.dress.util.Letter.AllLetter"/>
+        <mapping class="com.example.dress.util.Letter.PerLetter"/>
+        <mapping class="com.example.dress.util.Letter.Letter"/>
 
     </list>
 </litepal>

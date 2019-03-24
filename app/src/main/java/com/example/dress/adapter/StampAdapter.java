@@ -7,23 +7,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dress.R;
 import com.example.dress.activity.StampViewActivity;
-import com.example.dress.util.Stamp;
+import com.example.dress.util.GetResouce;
+import com.example.dress.util.Stamp.AllStamp;
+import com.example.dress.util.Stamp.PerStamp;
+import com.example.dress.util.Stamp.Stamp;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> {
 
-    private List<Stamp> stampList;
+    private List<PerStamp> stampList;
     private Context mContext;
 
-    public StampAdapter(List<Stamp> stamps)
+    public StampAdapter(List<PerStamp> stamps)
     {
         stampList=stamps;
     }
@@ -37,21 +40,14 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
         final StampAdapter.ViewHolder holder = new StampAdapter.ViewHolder(view);
 
 
-
-        holder.stampImage.setOnClickListener(new View.OnClickListener() {
+        holder.stampView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                Stamp stampTemp = stampList.get(position);
+                PerStamp stampTemp = stampList.get(position);
                 Intent intent = new Intent(mContext, StampViewActivity.class);
-                intent.putExtra("group_index",stampTemp.getGroupIndex());
+                intent.putExtra("group_index",stampTemp);
                 mContext.startActivity(intent);
-            }
-        });
-        holder.stampText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
         return holder;
@@ -59,12 +55,10 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull StampAdapter.ViewHolder viewHolder, int i) {
-        Stamp stamp = stampList.get(i);
-        viewHolder.stampImage.setImageResource(stamp.getImageSourse());
-        viewHolder.stampText.setText(stamp.getText());
-       // viewHolder.text.setText(stamp.getText());
-        //viewHolder.sender.setText(stamp.getSender());
-        //viewHolder.receiver.setText("亲爱的"+stamp.getReceiver()+":");
+        PerStamp stamp = stampList.get(i);
+        String count = stamp.getHave()+"/"+stamp.getCount();
+        viewHolder.stampImage.setImageResource(GetResouce.getResource(stamp.getOrder(),0));
+        viewHolder.stampText.setText(count);
     }
 
     @Override
@@ -82,7 +76,6 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
             stampView=view;
             stampImage = (ImageView)view.findViewById(R.id.stamp_iamge);
             stampText = (TextView)view.findViewById(R.id.stamp_text);
-
         }
     }
 }

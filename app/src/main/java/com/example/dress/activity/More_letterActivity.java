@@ -7,16 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.dress.R;
-import com.example.dress.adapter.EnvelopeAdapter;
 import com.example.dress.adapter.PersonLetterAdapter;
-import com.example.dress.util.Envelope;
-import com.example.dress.util.Letter;
-import com.example.dress.util.PerLetter;
+import com.example.dress.util.Letter.PerLetter;
 import com.example.dress.util.cache;
 
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
