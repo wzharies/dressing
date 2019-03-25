@@ -62,7 +62,7 @@ public class Fragment3 extends Fragment {
                 break;
             case R.id.shop:
                 startActivity(new Intent(getActivity(), ShopActivity.class));
-                Toast.makeText(getActivity(),"暂未开放",Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.set:
                 Toast.makeText(getActivity(),"暂未开放",Toast.LENGTH_SHORT).show();
