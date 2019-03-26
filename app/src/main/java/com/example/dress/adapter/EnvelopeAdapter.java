@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.dress.R;
 import com.example.dress.activity.EnvelopeViewActivity;
 import com.example.dress.activity.More_letterActivity;
@@ -65,7 +66,8 @@ public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHo
         viewHolder.receiver.setText("亲爱的"+envelope.getReceiver()+":");
         int group = envelope.getStampviewid()/100;
         int index = envelope.getStampviewid()%100;
-        viewHolder.stampImage.setImageResource(GetResouce.getResource(group,index));
+        Log.i("debug",group+"-"+index);
+        Glide.with(mContext).load(GetResouce.getResource(group,index)).into(viewHolder.stampImage);
     }
 
     @Override

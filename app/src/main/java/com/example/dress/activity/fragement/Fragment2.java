@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.example.dress.R;
 import com.example.dress.adapter.EnvelopeAdapter;
-import AllLetter;
 import com.example.dress.util.Api.ApiService;
+import com.example.dress.util.Letter.AllLetter;
 import com.example.dress.util.Letter.Letter;
 import com.example.dress.util.Letter.PerLetter;
 import com.example.dress.util.RetrofitManager;
@@ -112,14 +112,17 @@ public class Fragment2 extends Fragment {
 
         int id = cache.getUser().getId();
         for(Letter letter:letters){
-            if(letter.getReceiverid()==id){
-                if(id_to_name.get(letter.getSenderid())==null){
+            System.out.println(letter.toString());
+            if(letter.getReceiverid()==id){    //这封信接受者是我
+                if(id_to_name.get(letter.getSenderid())==null){   //发送者还没有添加到列表
                     id_to_name.put(letter.getSenderid(),letter.getSender());
                     id_to_position.put(letter.getSenderid(),allletter.size());
+                    System.out.println(allletter.size()+"allletter.size()");
                     position_to_id.put(allletter.size(),letter.getSenderid());
                     List<Letter> perletter = new ArrayList<Letter>();
                     perletter.add(letter);
-                    allletter.add(new PerLetter(letter.getSenderid(),perletter));
+                    allletter.add(new PerLetter(letter.getSenderid(),perletter));  //添加到列表
+                    System.out.println();
                 }else{
                     allletter.get(id_to_position.get(letter.getSenderid())).getPerletter().add(letter);
                 }
@@ -135,6 +138,7 @@ public class Fragment2 extends Fragment {
                     }
                 }else{
                     allletter.get(id_to_position.get(letter.getReceiverid())).getPerletter().add(letter);
+                    System.out.println(id_to_position.get(letter.getReceiverid()));
                 }
             }
 

@@ -26,7 +26,7 @@ public class AllLetter extends LitePalSupport implements Serializable {
         if(allFirstLetter==null){
             allFirstLetter = new ArrayList<Letter>();
             for(PerLetter letter:allletter){
-                allFirstLetter.add(letter.getLastLetter());
+                allFirstLetter.add(letter.getLastNotMeLetter());
             }
         }
         return allFirstLetter;
@@ -35,7 +35,7 @@ public class AllLetter extends LitePalSupport implements Serializable {
     public void updateAllFirstLetter(){
         allFirstLetter = new ArrayList<Letter>();
         for(PerLetter letter:allletter){
-            allFirstLetter.add(letter.getLastLetter());
+            allFirstLetter.add(letter.getLastNotMeLetter());
         }
     }
 

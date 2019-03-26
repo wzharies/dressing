@@ -41,13 +41,23 @@ public class PersonLetterAdapter extends RecyclerView.Adapter<PersonLetterAdapte
                 mContext.startActivity(intent);
             }
         });
+        holder.right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Letter letter = perLetter.getPerletter().get(position);
+                Intent intent = new Intent(mContext, EnvelopeViewActivity.class);
+                intent.putExtra("envelope_data",letter);
+                mContext.startActivity(intent);
+            }
+        });
 
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull PersonLetterAdapter.ViewHolder viewHolder, int i) {
-        if(perLetter.getPerletter().get(i).getReceiverid()==perLetter.getReceiveid()){
+        if(perLetter.getPerletter().get(i).getReceiverid()!=perLetter.getReceiveid()){
             Glide.with(mContext).load(R.drawable.sex1).into(viewHolder.left);
             viewHolder.leftline.setBackgroundResource(R.color.yellow);
             viewHolder.right.setVisibility(View.INVISIBLE);
@@ -56,7 +66,7 @@ public class PersonLetterAdapter extends RecyclerView.Adapter<PersonLetterAdapte
             Glide.with(mContext).load(R.drawable.sex2).into(viewHolder.right);
             viewHolder.rightline.setBackgroundResource(R.color.blue);
             viewHolder.left.setVisibility(View.INVISIBLE);
-            viewHolder.left.setVisibility(View.INVISIBLE);
+            viewHolder.leftline.setVisibility(View.INVISIBLE);
         }
     }
 

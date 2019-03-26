@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.dress.R;
 import com.example.dress.util.Api.ApiService;
 import com.example.dress.util.Envelope;
+import com.example.dress.util.Letter.Letter;
 import com.example.dress.util.RetrofitManager;
 import com.example.dress.util.Timestamp;
 import com.example.dress.util.cache;
@@ -33,14 +34,15 @@ import io.reactivex.schedulers.Schedulers;
 public class WtringActivity extends AppCompatActivity {
     @BindView(R.id.writing_name) EditText writing_name;
     @BindView(R.id.write_view_sender) TextView writing_sender;
-    @BindView(R.id.send_message)  MenuItem menuItem;
+ //   @BindView(R.id.send_message)  MenuItem menuItem;
     @BindView(R.id.writing_content) EditText writing_content;
     private String hint = "亲爱的";
 
-    String recevier;
-    String sender;
-    String text;
-    String timestamp;
+    private String receiver;
+    private String sender;
+    private String text;
+    private String timestamp;
+    private int receiverid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,9 +50,10 @@ public class WtringActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        recevier = intent.getStringExtra("sender");
-        sender = intent.getStringExtra("reciver");
-        writing_name.setText(hint+recevier+":");
+        receiverid = intent.getIntExtra("id",1);
+        receiver = intent.getStringExtra("receiver");
+        sender = intent.getStringExtra("sender");
+        writing_name.setText(hint+receiver+":");
         timestamp = Timestamp.gettime();
         writing_sender.setText(sender+"\n"+ timestamp);
 
@@ -65,6 +68,7 @@ public class WtringActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
 
     }
+    /*
     @OnClick({R.id.send_message})
     public void onClick(View view) {
         switch (view.getId()){
@@ -77,6 +81,7 @@ public class WtringActivity extends AppCompatActivity {
             }
         }
     }
+    */
 
 
     @Override
@@ -101,6 +106,16 @@ public class WtringActivity extends AppCompatActivity {
     }
     //发送信息函数
     public void sendMessage(){
+        text = writing_content.getText().toString();
+        Letter letter = new Letter();
+        letter.setReceiver(receiver);
+        letter.setReceiverid(receiverid);
+        letter.setSender(cache.getUser().getUsername());
+        letter.setSenderid(cache.getUser().getId());
+        letter.setText(text);
+        letter.setTimestamp(timestamp);
+        letter.setType(0);
+        /*
         text = writing_content.getText().toString();
         JsonObject jsonuser = new JsonObject();
         jsonuser.addProperty("receiver",recevier);
@@ -132,6 +147,10 @@ public class WtringActivity extends AppCompatActivity {
                         Log.e("writingletter",throwable.getMessage());
                     }
                 });
+                */
+        Intent intent = new Intent(this,TempStampViewActivity.class);
+        intent.putExtra("letter",letter);
+        startActivity(intent);
     }
 
 }

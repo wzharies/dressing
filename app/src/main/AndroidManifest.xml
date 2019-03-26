@@ -31,8 +31,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             >
 		</activity>
-        <activity android:name=".activity.StampViewActivity"
-            android:label="选择邮票"/>
 
         <activity android:name=".activity.MainActivity">
 
@@ -49,6 +47,11 @@
         <activity android:name=".activity.ViewActivity" />
 
         <activity android:name=".activity.RegisterActivity" />
+
+        <activity android:name=".activity.TempStampViewActivity"/>
+
+        <activity android:name=".activity.More_StampActivity"/>
+
     </application>
 
 </manifest>

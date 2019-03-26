@@ -77,4 +77,17 @@ public class Letter extends LitePalSupport implements Serializable {
     public void setType(int type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Letter{" +
+                "stampviewid=" + stampviewid +
+                ", receiverid=" + receiverid +
+                ", senderid=" + senderid +
+                ", sender='" + sender + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }
