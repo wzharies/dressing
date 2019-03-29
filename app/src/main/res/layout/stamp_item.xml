@@ -30,8 +30,8 @@
     android:layout_height="wrap_content"
     android:layout_alignBottom="@+id/stamp_iamge"
     android:gravity="right"
-    android:textSize="20sp"
-    android:text="x/y"/>
+    android:textSize="20sp" />
+
 
 
 </RelativeLayout>
