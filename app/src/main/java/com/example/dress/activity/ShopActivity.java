@@ -1,6 +1,5 @@
 package com.example.dress.activity;
 
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,31 +9,29 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.GridLayout;
 import android.widget.Toast;
 
 import com.example.dress.R;
 import com.example.dress.adapter.ShopStampsAdapter;
-import com.example.dress.adapter.StampAdapter;
-import com.example.dress.util.Stamp;
+import com.example.dress.util.Stamp.PerStamp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ShopActivity extends AppCompatActivity {
 
     //测试界面
     private RecyclerView recyclerView;
 
-    List<Stamp> shopstamps = new ArrayList<>();
-    private List<int[]> shopstampslist=new ArrayList<>();
+
+    private List<PerStamp> shopstampslist=new ArrayList<>();
     private ShopStampsAdapter shopStampsAdapter;
 
     private void initStamps(){
-        int a[][]=new int[100][3];
+        //int a[][]=new int[100][3];
         shopstampslist.clear();
-        shopstamps.clear();
+
+       /* shopstamps.clear();
        // shopstampslist.add(a);
         Stamp stamp1=new Stamp(R.drawable.ic_sync_black_24dp,1,1,0,10);
         Stamp stamp2=new Stamp(R.drawable.ic_info_black_24dp,1,2,0,10);
@@ -53,7 +50,7 @@ public class ShopActivity extends AppCompatActivity {
                 a[shopstamps.get(i).getGroupIndex()][2]=shopstamps.get(i).getMoney();
                 shopstampslist.add(a[shopstamps.get(i).getGroupIndex()]);
             }
-        }
+        }*/
     }
 
 

@@ -12,12 +12,21 @@
         android:id="@+id/write_toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
-
-    <ScrollView
+    <EditText
+        android:id="@+id/writing_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@null"
+        android:textSize="20sp"
+        android:lineSpacingExtra="20sp"
+        android:maxEms="20"
+        android:layout_margin="20dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="8">
         <EditText
+            android:id="@+id/writing_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="写下你想说的话吧"
@@ -26,7 +35,6 @@
             android:lineSpacingExtra="20sp"
             android:maxEms="20"
             android:layout_margin="20dp"/>
-            />
     </ScrollView>
     <TextView
         android:id="@+id/write_view_sender"
@@ -35,5 +43,5 @@
         android:textSize="20dp"
         android:layout_marginBottom="20dp"
         android:layout_gravity="right"
-        android:text="name\n2019.1.1"/>
+        />
 </LinearLayout>

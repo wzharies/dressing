@@ -7,25 +7,36 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.dress.R;
-import com.example.dress.activity.StampViewActivity;
-import com.example.dress.util.Stamp;
+import com.example.dress.activity.More_StampActivity;
+import com.example.dress.activity.More_letterActivity;
+import com.example.dress.activity.TempStampViewActivity;
+import com.example.dress.util.GetResouce;
+import com.example.dress.util.Letter.Letter;
+import com.example.dress.util.Stamp.PerStamp;
+import com.example.dress.util.cache;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> {
-
-    private List<Stamp> stampList;
+    private int[][] stampcount;
+    private List<PerStamp> stampList;
     private Context mContext;
+    private ArrayList<Integer> whichhave;
+    private Letter letter;
 
-    public StampAdapter(List<Stamp> stamps)
+    public StampAdapter(List<PerStamp> stamps, int[][] stampcounts, Letter _letter)
     {
         stampList=stamps;
+        stampcount = stampcounts;
+        whichhave = cache.getWhichhava();
+        letter = _letter;
     }
     @NonNull
     @Override
@@ -37,21 +48,15 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
         final StampAdapter.ViewHolder holder = new StampAdapter.ViewHolder(view);
 
 
-
-        holder.stampImage.setOnClickListener(new View.OnClickListener() {
+        holder.stampView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                Stamp stampTemp = stampList.get(position);
-                Intent intent = new Intent(mContext, StampViewActivity.class);
-                intent.putExtra("group_index",stampTemp.getGroupIndex());
+                Intent intent = new Intent(mContext, More_StampActivity.class);
+                intent.putExtra("stamp",whichhave.get(position));
+                letter.setStampviewid((whichhave.get(position)+1)*100);
+                intent.putExtra("letter",letter);
                 mContext.startActivity(intent);
-            }
-        });
-        holder.stampText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
         return holder;
@@ -59,12 +64,15 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull StampAdapter.ViewHolder viewHolder, int i) {
-        Stamp stamp = stampList.get(i);
-        viewHolder.stampImage.setImageResource(stamp.getImageSourse());
-        viewHolder.stampText.setText(stamp.getText());
-       // viewHolder.text.setText(stamp.getText());
-        //viewHolder.sender.setText(stamp.getSender());
-        //viewHolder.receiver.setText("亲爱的"+stamp.getReceiver()+":");
+        PerStamp stamp = stampList.get(whichhave.get(i));
+        int cnt=0;
+        for(int k = 0;k<stampcount[whichhave.get(i)].length;k++){
+            if(stampcount[i][k]!=0)
+                cnt++;
+        }
+        String count =cnt +"/"+stampcount[i].length;
+        Glide.with(mContext).load(GetResouce.getResource(stamp.getId(),1)).into(viewHolder.stampImage);
+        viewHolder.stampText.setText(count);
     }
 
     @Override
@@ -82,7 +90,6 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
             stampView=view;
             stampImage = (ImageView)view.findViewById(R.id.stamp_iamge);
             stampText = (TextView)view.findViewById(R.id.stamp_text);
-
         }
     }
 }
