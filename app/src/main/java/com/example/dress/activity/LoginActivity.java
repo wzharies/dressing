@@ -125,11 +125,10 @@ public class LoginActivity extends BaseActivity{
                             Intent intent = new Intent(LoginActivity.this,ViewActivity.class);
                             startActivity(intent);
                             finish();
-                        }else if(rd.getRet()==1){
+                        }else if(rd.getRet()==-1){
                             Log.i("login",rd.toString());
                             Toast.makeText(LoginActivity.this,rd.getMsg(),Toast.LENGTH_LONG).show();
                         }
-                        Toast.makeText(LoginActivity.this,"登录",Toast.LENGTH_LONG).show();
                     }
                 }, new Consumer<Throwable>() {
                     @Override

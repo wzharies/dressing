@@ -36,6 +36,15 @@ public class PerLetter extends LitePalSupport implements Serializable {
         return perletter.get(0);
     }
 
+    public boolean hasLastNotMeLetter(){
+        for(int i = perletter.size()-1;i>=0;i--){
+            if(perletter.get(i).getReceiverid()!=receiveid){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Letter getLastNotMeLetter(){
         for(int i = perletter.size()-1;i>=0;i--){
             if(perletter.get(i).getReceiverid()!=receiveid){

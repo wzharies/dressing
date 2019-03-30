@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -127,12 +128,11 @@ public class Fragment2 extends Fragment {
                 if(id_to_name.get(letter.getSenderid())==null){   //发送者还没有添加到列表
                     id_to_name.put(letter.getSenderid(),letter.getSender());
                     id_to_position.put(letter.getSenderid(),allletter.size());
-                    System.out.println(allletter.size()+"allletter.size()");
+                    //System.out.println(allletter.size()+"allletter.size()");
                     position_to_id.put(allletter.size(),letter.getSenderid());
                     List<Letter> perletter = new ArrayList<Letter>();
                     perletter.add(letter);
                     allletter.add(new PerLetter(letter.getSenderid(),perletter));  //添加到列表
-                    System.out.println();
                 }else{
                     allletter.get(id_to_position.get(letter.getSenderid())).getPerletter().add(letter);
                 }
@@ -148,10 +148,9 @@ public class Fragment2 extends Fragment {
                     }
                 }else{
                     allletter.get(id_to_position.get(letter.getReceiverid())).getPerletter().add(letter);
-                    System.out.println(id_to_position.get(letter.getReceiverid()));
+                    //System.out.println(id_to_position.get(letter.getReceiverid()));
                 }
             }
-
         }
         allletters.setAllletter(allletter);
         allletters.setId_to_name(id_to_name);

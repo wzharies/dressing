@@ -100,7 +100,7 @@ public class DataInitial {
                 tempStamps.add(tempStamp);
                 perStamp.setStamps(tempStamps);
                 perStamps.add(perStamp);
-                //System.out.println(tempStamp.toString());
+                Log.i("convertStamp",tempStamp.toString());
             }else{
                 tempStamp tempStamp = new tempStamp();
                 tempStamp.setText(s.getText());
@@ -108,7 +108,7 @@ public class DataInitial {
                 tempStamp.setName(s.getName());
                 PerStamp perStamp = perStamps.get(perStamps.size()-1);
                 perStamp.getStamps().add(tempStamp);
-                //System.out.println(tempStamp.toString());
+                Log.i("convertStamp",tempStamp.toString());
             }
             // System.out.println(s.toString());
         }

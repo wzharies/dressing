@@ -40,7 +40,7 @@ public class RegisterActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        setContentView(R.layout.new_register);
         ButterKnife.bind(this);
         register_code.setImageBitmap(Code.getInstance().createBitmap());
         realCode=Code.getInstance().getCode().toLowerCase();

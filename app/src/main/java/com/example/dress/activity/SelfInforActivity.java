@@ -2,6 +2,7 @@ package com.example.dress.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -54,7 +55,7 @@ public class SelfInforActivity extends BaseActivity {
         init();
     }
 
-        @OnClick({R.id.save,R.id.checkBox_1,R.id.checkBox_2})
+        @OnClick({R.id.save,R.id.checkBox_1,R.id.checkBox_2,R.id.iv_self_back})
         public void onClick (View view){
             switch (view.getId()) {
                 case R.id.save: {
@@ -112,6 +113,10 @@ public class SelfInforActivity extends BaseActivity {
 
                 case R.id.checkBox_2: {
                     check_1.setChecked(false);
+                    break;
+                }
+                case R.id.iv_self_back:{
+                    finish();
                     break;
                 }
 

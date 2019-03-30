@@ -35,6 +35,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.bumptech.glide.request.target.Target.SIZE_ORIGINAL;
+
 public class More_StampAdapter extends RecyclerView.Adapter<More_StampAdapter.ViewHolder> {
     private Context mContext;
     private int position;
@@ -92,7 +94,11 @@ public class More_StampAdapter extends RecyclerView.Adapter<More_StampAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull More_StampAdapter.ViewHolder viewHolder, int i) {
         System.out.println(position+"-"+i);
-        Glide.with(mContext).load(GetResouce.getResource(position+1,i+1)).into(viewHolder.stampImage);
+        //屏幕的宽度(px值）
+        int screenWidth = mContext.getResources().getDisplayMetrics().widthPixels;
+        //Item的宽度，或图片的宽度
+        int width = screenWidth/2;
+        Glide.with(mContext).load(GetResouce.getResource(position+1,i+1)).override(width,SIZE_ORIGINAL).into(viewHolder.stampImage);
         viewHolder.stampText.setText(stampcount[i]+"");
     }
 

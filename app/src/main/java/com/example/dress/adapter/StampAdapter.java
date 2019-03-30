@@ -24,6 +24,8 @@ import com.example.dress.util.cache;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bumptech.glide.request.target.Target.SIZE_ORIGINAL;
+
 public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> {
     private int[][] stampcount;
     private List<PerStamp> stampList;
@@ -56,6 +58,7 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
         if(mContext==null){
             mContext=viewGroup.getContext();
         }
+
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.stamp_item,viewGroup,false);
         final StampAdapter.ViewHolder holder = new StampAdapter.ViewHolder(view);
 
@@ -88,7 +91,10 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
                 cnt++;
         }
         String count =cnt +"/"+stampcount[i].length;
-        Glide.with(mContext).load(GetResouce.getResource(stamp.getId(),1)).into(viewHolder.stampImage);
+        int screenWidth = mContext.getResources().getDisplayMetrics().widthPixels;
+        //Item的宽度，或图片的宽度
+        int width = screenWidth/2;
+        Glide.with(mContext).load(GetResouce.getResource(stamp.getId(),1)).override(width,SIZE_ORIGINAL).into(viewHolder.stampImage);
         viewHolder.stampText.setText(count);
     }
 
