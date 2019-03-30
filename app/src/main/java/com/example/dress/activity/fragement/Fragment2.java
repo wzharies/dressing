@@ -4,14 +4,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.dress.R;
+import com.example.dress.activity.Myapplication;
 import com.example.dress.adapter.EnvelopeAdapter;
 import com.example.dress.util.Api.ApiService;
 import com.example.dress.util.Letter.AllLetter;
@@ -54,6 +59,9 @@ public class Fragment2 extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
     }
 
     @Override
@@ -88,7 +96,7 @@ public class Fragment2 extends Fragment {
                     @Override
                     public void accept(@NonNull ResponseData<List<Letter>> rd) throws Exception {
                         if(rd!=null){
-                            Toast.makeText(getActivity(),rd.getMsg(),Toast.LENGTH_SHORT);
+                            Toast.makeText(getActivity(),rd.getMsg(),Toast.LENGTH_SHORT).show();
                             if(rd.getRet()==0){
                                 list_to_Allletter(rd.getData());
                             }
@@ -99,6 +107,8 @@ public class Fragment2 extends Fragment {
                     @Override
                     public void accept(@NonNull Throwable throwable) throws Exception {
                         throwable.printStackTrace();
+                        Toast.makeText(getActivity(),"连接异常",Toast.LENGTH_SHORT).show();
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 });
     }

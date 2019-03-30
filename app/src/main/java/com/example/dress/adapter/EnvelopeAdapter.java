@@ -27,6 +27,7 @@ public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHo
 
     public EnvelopeAdapter(List<Letter> envelopes)
     {
+
         envelopeList=envelopes;
     }
     @NonNull
@@ -61,6 +62,9 @@ public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Letter envelope = envelopeList.get(i);
+        for(Letter letter:envelopeList){
+            System.out.println("letter");
+        }
         viewHolder.text.setText(envelope.getText());
         viewHolder.sender.setText(envelope.getSender());
         viewHolder.receiver.setText("亲爱的"+envelope.getReceiver()+":");

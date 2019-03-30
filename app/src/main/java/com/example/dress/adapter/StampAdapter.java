@@ -31,12 +31,24 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
     private ArrayList<Integer> whichhave;
     private Letter letter;
 
+    private int year;
+    private int month;
+    private int day;
+
     public StampAdapter(List<PerStamp> stamps, int[][] stampcounts, Letter _letter)
     {
         stampList=stamps;
         stampcount = stampcounts;
         whichhave = cache.getWhichhava();
         letter = _letter;
+    }
+
+    public StampAdapter(List<PerStamp> stamps, int[][] stampcounts, Letter _letter,int year,int month,int day)
+    {
+        this(stamps,stampcounts,_letter);
+        this.year=year;
+        this.month=month;
+        this.day=day;
     }
     @NonNull
     @Override
@@ -56,6 +68,11 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
                 intent.putExtra("stamp",whichhave.get(position));
                 letter.setStampviewid((whichhave.get(position)+1)*100);
                 intent.putExtra("letter",letter);
+                if(letter.getType()==2){
+                    intent.putExtra("year",year);
+                    intent.putExtra("month",month);
+                    intent.putExtra("day",day);
+                }
                 mContext.startActivity(intent);
             }
         });

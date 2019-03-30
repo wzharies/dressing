@@ -64,6 +64,7 @@
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 >
+
                 <ImageView
                     android:src="@mipmap/ic_favorite_black_48dp"
                     android:layout_width="0dp"
@@ -148,7 +149,8 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_marginTop="16dp" />
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_right_arrow"/>
 
             </LinearLayout>
             <View
@@ -182,7 +184,8 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_marginTop="16dp" />
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_right_arrow"/>
 
             </LinearLayout>
             <View

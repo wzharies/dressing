@@ -58,6 +58,7 @@ public class EnvelopeViewActivity extends AppCompatActivity {
 
             case R.id.write_letter: {
                 Intent intent = new Intent(this, WtringActivity.class);
+                intent.putExtra("type",0);
                 intent.putExtra("id",envelope.getSenderid());
                 intent.putExtra("receiver",envelope.getSender());
                 intent.putExtra("sender",envelope.getReceiver());

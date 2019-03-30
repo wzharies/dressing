@@ -54,7 +54,7 @@ public class LoginActivity extends BaseActivity{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_enter: {
-                login_temp();
+                login();
                 break;
             }
             case R.id.tv_find_pwd: {

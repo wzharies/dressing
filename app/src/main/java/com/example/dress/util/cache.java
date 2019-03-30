@@ -1,31 +1,14 @@
 package com.example.dress.util;
 
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.dress.activity.LoginActivity;
-import com.example.dress.activity.RegisterActivity;
-import com.example.dress.util.Api.ApiService;
 import com.example.dress.util.Letter.AllLetter;
-import com.example.dress.util.Letter.Letter;
 import com.example.dress.util.Stamp.AllStamp;
-import com.example.dress.util.jsondata.ResponseData;
-import com.example.dress.util.jsondata.StampJson;
-import com.google.gson.JsonObject;
 
 import org.litepal.LitePal;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 public class cache {
     private static AllLetter letters=null;
@@ -33,7 +16,7 @@ public class cache {
     private static AllStamp allStamp=null;
     private static int[][] stampcount=null;
     private static ArrayList<Integer> whichhava;
-    private static int money;
+    private static int money=-1;
 
     public static void getCache(){
         SQLiteDatabase db = LitePal.getDatabase();
@@ -57,6 +40,9 @@ public class cache {
     }
 
     public static AllStamp getAllStamp() {
+        if(allStamp==null){
+            DataInitial.initStamp();
+        }
         return allStamp;
     }
 
@@ -65,7 +51,9 @@ public class cache {
     }
 
     public static int[][] getStampcount() {
-
+        if(stampcount==null){
+            DataInitial.initDate();
+        }
         return stampcount;
     }
 
@@ -75,6 +63,9 @@ public class cache {
     }
 
     public static int getMoney() {
+        if(money==-1){
+            DataInitial.initDate();
+        }
         return money;
     }
 
@@ -83,6 +74,9 @@ public class cache {
     }
 
     public static ArrayList<Integer> getWhichhava() {
+        if(whichhava==null){
+            initwhichhave();
+        }
         return whichhava;
     }
 
@@ -104,4 +98,6 @@ public class cache {
         }
 
     }
+
+
 }
