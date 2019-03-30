@@ -25,6 +25,7 @@ public class cache {
     }
 
     public static User getUser(){
+        User user=new User("22323","jjflying",56,"4555");
        return user;
     }
     public static void setUser(User ur){

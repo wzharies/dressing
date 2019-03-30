@@ -17,6 +17,7 @@ public class MainActivity extends BaseActivity {
         LitePal.initialize(this);
 
         cache.getCache ();
+
         if(cache.getUser()==null){
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);

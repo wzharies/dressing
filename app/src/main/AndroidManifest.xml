@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.dress">
 
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -17,20 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".activity.SelfInforActivity"/>
-        <activity android:name=".activity.More_letterActivity"/>
-        <activity android:name=".activity.WtringActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activity.EnvelopeViewActivity"
+        <activity android:name=".activity.AboutAppActivity"></activity>
+        <activity android:name=".activity.SelfInforActivity" />
+        <activity android:name=".activity.More_letterActivity" />
+        <activity
+            android:name=".activity.WtringActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.ShopActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
-		</activity>
-
+        <activity
+            android:name=".activity.EnvelopeViewActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ShopActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".activity.MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,17 +36,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".activity.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".activity.ViewActivity" />
-
         <activity android:name=".activity.RegisterActivity" />
-
-        <activity android:name=".activity.TempStampViewActivity"/>
-
-        <activity android:name=".activity.More_StampActivity"/>
-
+        <activity android:name=".activity.TempStampViewActivity" />
+        <activity android:name=".activity.More_StampActivity" />
     </application>
 
 </manifest>
