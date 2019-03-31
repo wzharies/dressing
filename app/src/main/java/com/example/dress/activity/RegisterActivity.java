@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -34,6 +35,8 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.et_registeractivity_invitation)  EditText et_invitation;//邀请码
     @BindView(R.id.et_registeractivity_phoneCodes) EditText et_codes;//输入的验证码
     @BindView(R.id.iv_registeractivity_showCode)   ImageView register_code;//验证码
+    @BindView(R.id.register_checkBox_1) CheckBox check_1;
+    @BindView(R.id.register_checkBox_2) CheckBox check_2;
     private String realCode;
     private String invitationcode="654321";
 
@@ -44,30 +47,38 @@ public class RegisterActivity extends BaseActivity {
         ButterKnife.bind(this);
         register_code.setImageBitmap(Code.getInstance().createBitmap());
         realCode=Code.getInstance().getCode().toLowerCase();
+        check_1.setChecked(true);
     }
 
-    @OnClick({R.id.bt_registeractivity_register,R.id.iv_registeractivity_showCode,R.id.iv_registeractivity_back})
+    @OnClick({R.id.bt_registeractivity_register,R.id.iv_registeractivity_showCode,R.id.iv_registeractivity_back,R.id.register_checkBox_1,R.id.register_checkBox_2})
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.iv_registeractivity_back:
-                    Intent intent1 = new Intent(this, LoginActivity.class);
-                    startActivity(intent1);
-                    finish();
-                    break;
-            case R.id.iv_registeractivity_showCode:
-                    register_code.setImageBitmap(Code.getInstance().createBitmap());
-                    realCode=Code.getInstance().getCode().toLowerCase();
-                    break;
+            case R.id.iv_registeractivity_back: {
+                Intent intent1 = new Intent(this, LoginActivity.class);
+                startActivity(intent1);
+                finish();
+                break;
+            }
+            case R.id.iv_registeractivity_showCode: {
+                register_code.setImageBitmap(Code.getInstance().createBitmap());
+                realCode = Code.getInstance().getCode().toLowerCase();
+                break;
+            }
             case R.id.bt_registeractivity_register: {
                 String phone = et_phone.getText().toString();
                 String password1 = et_password1.getText().toString();
                 String password2 = et_password2.getText().toString();
                 String invitation = et_invitation.getText().toString();
                 String codes = et_codes.getText().toString();
+                int sex = 1;
+                if (!check_1.isChecked()) {
+                    sex = 2;
+                }
                 if (isLegal(phone, password1, password2, invitation, codes)) {
                     JsonObject jsonuser = new JsonObject();
                     jsonuser.addProperty("phone",phone);
                     jsonuser.addProperty("password",password1);
+                    jsonuser.addProperty("sex",sex);
                     RetrofitManager.create(ApiService.class).register(jsonuser)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
@@ -97,6 +108,15 @@ public class RegisterActivity extends BaseActivity {
 
 
                 }
+                break;
+            }
+            case R.id.register_checkBox_1: {
+                check_2.setChecked(false);
+                break;
+            }
+
+            case R.id.register_checkBox_2: {
+                check_1.setChecked(false);
                 break;
             }
             default : {

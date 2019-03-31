@@ -114,6 +114,30 @@
                     android:inputType="textPassword"
                     />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性   别："/>
+                <CheckBox
+                    android:id="@+id/register_checkBox_1"
+                    android:layout_marginLeft="12dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="男"/>
+
+                <CheckBox
+                    android:id="@+id/register_checkBox_2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="女"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
