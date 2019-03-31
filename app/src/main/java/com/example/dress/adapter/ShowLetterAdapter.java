@@ -14,19 +14,20 @@ import com.bumptech.glide.Glide;
 import com.example.dress.R;
 import com.example.dress.activity.Museum_Activity;
 import com.example.dress.util.GetResouce;
-import com.example.dress.util.Letter.Letter;
+
 import com.example.dress.util.ShowLetter.ShowLetterGroup;
+import com.example.dress.util.ShowLetter.TempShowLetter;
 import com.example.dress.util.cache;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShowLetterAdapter extends RecyclerView.Adapter<ShowLetterAdapter.ViewHolder>{
-    private int[][] showLettercount;
     private List<ShowLetterGroup> showLetterList;
     private Context mContext;
     private ArrayList<Integer> whichhave;
-    private Letter letter;
+    private int tag;
+    private TempShowLetter letter;
 
     public ShowLetterAdapter(List<ShowLetterGroup> showLetterGroups, int tag)
     {
