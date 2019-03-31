@@ -20,6 +20,7 @@ import com.example.dress.activity.AboutAppActivity;
 import com.example.dress.activity.SelfInforActivity;
 
 
+import com.example.dress.activity.SettingActivity;
 import com.example.dress.activity.ShopActivity;
 import com.example.dress.adapter.ActivityCollector;
 import com.example.dress.util.cache;
@@ -76,7 +77,7 @@ public class Fragment3 extends Fragment {
                     break;
         }
     }*/
-    @OnClick({R.id.page3_self,R.id.about_app})
+    @OnClick({R.id.page3_self,R.id.about_app,R.id.newshop,R.id.setting})
     public void OnClick(View view) {
 
         switch (view.getId()) {
@@ -87,6 +88,12 @@ public class Fragment3 extends Fragment {
                 break;
             case R.id.about_app:
                 startActivity(new Intent(getActivity(), AboutAppActivity.class));
+                break;
+            case R.id.setting:
+                startActivity(new Intent(getActivity(), SettingActivity.class));
+                break;
+            case R.id.newshop:
+                startActivity(new Intent(getActivity(),ShopActivity.class));
                 break;
         }
     }

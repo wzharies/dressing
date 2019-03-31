@@ -9,13 +9,13 @@ import android.view.MenuItem;
 
 import com.example.dress.R;
 
-public class AboutAppActivity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_app);
-        Toolbar toolbar=(Toolbar)findViewById(R.id.about_appToolba);
+        setContentView(R.layout.activity_setting);
+        Toolbar toolbar=(Toolbar)findViewById(R.id.setting_Toolba);
         setSupportActionBar(toolbar);
         ActionBar actionBar=getSupportActionBar();
         if(actionBar!=null){
@@ -23,7 +23,6 @@ public class AboutAppActivity extends AppCompatActivity {
 
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.nothing,menu);

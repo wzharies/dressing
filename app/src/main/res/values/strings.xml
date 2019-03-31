@@ -11,6 +11,14 @@
     <string name="page3_text3">给自己的信</string>
     <string name="page3_text4">关于APP</string>
 
+    <string name="page3_text4_1">工作人员</string>
+    <string name="page3_text4_2">联系电话</string>
+    <string name="page3_text4_3">C124</string>
+    <string name="page3_text4_4">123456</string>
+    <string name="page3_text4_5">官方微信</string>
+    <string name="page3_text4_6">5622331</string>
+    <string name="page3_text4_7">版本更新</string>
+
 
     <string name="page3_text1_1">我的邮票</string>
     <string name="page3_text1_2">商城</string>
@@ -20,6 +28,9 @@
     <string name="page3_text2_1">新手引导</string>
     <string name="page3_text2_2">意见反馈</string>
     <string name="page3_text2_3">设置</string>
+
+    <string name="page3_text2_3_1">分享给好友</string>
+    <string name="page3_text2_3_2">清除缓存</string>
 
     <string name="app_name1">展信悦</string>
 

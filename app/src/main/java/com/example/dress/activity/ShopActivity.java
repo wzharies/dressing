@@ -27,30 +27,11 @@ public class ShopActivity extends AppCompatActivity {
     private List<PerStamp> shopstampslist=new ArrayList<>();
     private ShopStampsAdapter shopStampsAdapter;
 
+    //把从数据库得到的perstamp加入到shopstamplist里
     private void initStamps(){
-        //int a[][]=new int[100][3];
+
         shopstampslist.clear();
 
-       /* shopstamps.clear();
-       // shopstampslist.add(a);
-        Stamp stamp1=new Stamp(R.drawable.ic_sync_black_24dp,1,1,0,10);
-        Stamp stamp2=new Stamp(R.drawable.ic_info_black_24dp,1,2,0,10);
-        Stamp stamp3=new Stamp(R.drawable.ic_notifications_black_24dp,2,1,0,10);
-        shopstamps.add(stamp1);
-        shopstamps.add(stamp2);
-        shopstamps.add(stamp3);
-        for(int i=0;i<shopstamps.size();i++){
-            if(a[shopstamps.get(i).getGroupIndex()][0]==shopstamps.get(i).getGroupIndex()){
-               a[shopstamps.get(i).getGroupIndex()][1]=a[shopstamps.get(i).getGroupIndex()][1]+1;
-                a[shopstamps.get(i).getGroupIndex()][2]=a[shopstamps.get(i).getGroupIndex()][2]+shopstamps.get(i).getMoney();
-
-            }else{
-                a[shopstamps.get(i).getGroupIndex()][0]=shopstamps.get(i).getGroupIndex();
-                a[shopstamps.get(i).getGroupIndex()][1]=1;
-                a[shopstamps.get(i).getGroupIndex()][2]=shopstamps.get(i).getMoney();
-                shopstampslist.add(a[shopstamps.get(i).getGroupIndex()]);
-            }
-        }*/
     }
 
 

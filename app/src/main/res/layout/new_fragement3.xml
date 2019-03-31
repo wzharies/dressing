@@ -187,6 +187,7 @@
                 android:background="@color/horizontal_line" />
 
             <LinearLayout
+                android:id="@+id/newshop"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginBottom="5dp"
@@ -354,6 +355,7 @@
                 android:background="@color/horizontal_line" />
 
             <LinearLayout
+                android:id="@+id/setting"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginBottom="5dp"
