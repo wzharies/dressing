@@ -7,7 +7,12 @@ import java.util.List;
 
 public class PerStamp  extends LitePalSupport implements Serializable {
     private int id;
+    private  int value;
     private List<tempStamp> stamps;
+
+    public void setValu(int value){this.value=value;}
+
+    public int getValue(){return value;}
 
     public int getId() {
         return id;

@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dress.R;
+import com.example.dress.activity.AboutAppActivity;
 import com.example.dress.activity.SelfInforActivity;
 
 
@@ -35,6 +37,7 @@ public class Fragment3 extends Fragment {
     @BindView(R.id.page3_1_name) TextView page3_name;
     @BindView(R.id.page3_1_signature)TextView page3_signature;
     @BindView(R.id.page3_1_avatar) ImageView page3_avatar;
+    @BindView(R.id.about_app) LinearLayout page3_about;
     public Fragment3() {
         super();
     }
@@ -62,7 +65,7 @@ public class Fragment3 extends Fragment {
                 break;
             case R.id.shop:
                 startActivity(new Intent(getActivity(), ShopActivity.class));
-                Toast.makeText(getActivity(),"暂未开放",Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.set:
                 Toast.makeText(getActivity(),"暂未开放",Toast.LENGTH_SHORT).show();
@@ -73,7 +76,7 @@ public class Fragment3 extends Fragment {
                     break;
         }
     }*/
-    @OnClick({R.id.page3_self})
+    @OnClick({R.id.page3_self,R.id.about_app})
     public void OnClick(View view) {
 
         switch (view.getId()) {
@@ -81,6 +84,9 @@ public class Fragment3 extends Fragment {
                 //Log.d("tag","here is Toast");
                 Intent intent = new Intent(getActivity(), SelfInforActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.about_app:
+                startActivity(new Intent(getActivity(), AboutAppActivity.class));
                 break;
         }
     }
