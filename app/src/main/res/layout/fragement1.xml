@@ -21,13 +21,16 @@
             android:orientation="vertical"
             android:layout_marginRight="40dp">
             <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp" />
+                android:id="@+id/letter_museum"
+                android:src="@mipmap/letter_museum"
+                android:padding="10dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:text="新建博物馆"/>
+                android:text="信件博物馆"/>
         </LinearLayout>
 
 
@@ -37,6 +40,9 @@
             android:orientation="vertical"
             android:layout_marginLeft="40dp">
             <ImageView
+                android:id="@+id/good_letter"
+                android:src="@mipmap/letter_good"
+                android:padding="10dp"
                 android:layout_width="70dp"
                 android:layout_height="70dp" />
             <TextView
@@ -44,9 +50,18 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
 
-                android:text="新建博物馆"/>
+                android:text="精选信件"/>
         </LinearLayout>
     </LinearLayout>
+
+    <include layout="@layout/content_and_more"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment1_recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/show_letter_item"/>
+
+    </android.support.v7.widget.RecyclerView>
 
 
 </LinearLayout>

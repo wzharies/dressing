@@ -36,12 +36,13 @@ public class cache {
     private static int money;
 
     public static void getCache(){
-        SQLiteDatabase db = LitePal.getDatabase();
-        letters = LitePal.findFirst(AllLetter.class);
-        user = LitePal.findFirst(User.class);
+        //SQLiteDatabase db = LitePal.getDatabase();
+        //letters = LitePal.findFirst(AllLetter.class);
+        //user = LitePal.findFirst(User.class);
     }
 
     public static User getUser(){
+        User user = new User("186666666","shit",1,"11111");
        return user;
     }
     public static void setUser(User ur){
