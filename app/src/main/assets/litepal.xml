@@ -3,7 +3,7 @@
 
     <dbname value="database" />
 
-    <version value="1" />
+    <version value="10" />
 
     <list>
         <mapping class="com.example.dress.util.User" />

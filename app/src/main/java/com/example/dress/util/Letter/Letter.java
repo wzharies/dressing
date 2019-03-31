@@ -84,6 +84,7 @@ public class Letter extends LitePalSupport implements Serializable {
                 "stampviewid=" + stampviewid +
                 ", receiverid=" + receiverid +
                 ", senderid=" + senderid +
+                ", text='" + text + '\'' +
                 ", sender='" + sender + '\'' +
                 ", receiver='" + receiver + '\'' +
                 ", timestamp='" + timestamp + '\'' +

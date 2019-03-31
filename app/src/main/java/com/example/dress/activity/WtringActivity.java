@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dress.R;
+import com.example.dress.adapter.ActivityCollector;
 import com.example.dress.util.Api.ApiService;
 import com.example.dress.util.Envelope;
 import com.example.dress.util.Letter.Letter;
@@ -31,29 +32,49 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class WtringActivity extends AppCompatActivity {
+public class WtringActivity extends BaseActivity {
     @BindView(R.id.writing_name) EditText writing_name;
     @BindView(R.id.write_view_sender) TextView writing_sender;
- //   @BindView(R.id.send_message)  MenuItem menuItem;
+ // @BindView(R.id.send_message)  MenuItem menuItem;
     @BindView(R.id.writing_content) EditText writing_content;
-    private String hint = "亲爱的";
-
-    private String receiver;
+ // private String hint = "亲爱的";
+    private int sendertype;
+    //private String receiver;
     private String sender;
     private String text;
     private String timestamp;
     private int receiverid;
+
+    private int year;
+    private int month;
+    private int day;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wtring);
+        ActivityCollector.addStampActivity(this);
         ButterKnife.bind(this);
-
         Intent intent = getIntent();
-        receiverid = intent.getIntExtra("id",1);
-        receiver = intent.getStringExtra("receiver");
-        sender = intent.getStringExtra("sender");
-        writing_name.setText(hint+receiver+":");
+        sendertype = intent.getIntExtra("type",0);
+        if(sendertype==0) {
+            receiverid = intent.getIntExtra("id", 1);
+            //    receiver = intent.getStringExtra("receiver");
+            //    sender = intent.getStringExtra("sender");
+            sender = cache.getUser().getUsername();
+            writing_name.setText("Id:"+receiverid+"");
+        }else if(sendertype ==1){                  //发送给陌生人
+            receiverid = -1;
+            sender = cache.getUser().getUsername();
+            writing_name.setText("亲爱的陌生人");
+        }else if(sendertype ==2){                 //发送给自己
+            receiverid = cache.getUser().getId();
+            sender = cache.getUser().getUsername();
+            year = intent.getIntExtra("year",2077);
+            month = intent.getIntExtra("month",0);
+            day = intent.getIntExtra("day",0);
+            Log.i(year+month+day+"wtringactivity",year+month+day+"");
+        }
         timestamp = Timestamp.gettime();
         writing_sender.setText(sender+"\n"+ timestamp);
 
@@ -99,8 +120,6 @@ public class WtringActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 break;
-
-
         }
         return true;
     }
@@ -108,48 +127,20 @@ public class WtringActivity extends AppCompatActivity {
     public void sendMessage(){
         text = writing_content.getText().toString();
         Letter letter = new Letter();
-        letter.setReceiver(receiver);
+        letter.setReceiver(writing_name.getText().toString());
         letter.setReceiverid(receiverid);
         letter.setSender(cache.getUser().getUsername());
         letter.setSenderid(cache.getUser().getId());
         letter.setText(text);
         letter.setTimestamp(timestamp);
-        letter.setType(0);
-        /*
-        text = writing_content.getText().toString();
-        JsonObject jsonuser = new JsonObject();
-        jsonuser.addProperty("receiver",recevier);
-        jsonuser.addProperty("sender",sender);
-        jsonuser.addProperty("text",text);
-        jsonuser.addProperty("timestamp",timestamp);
-
-
-        RetrofitManager.create(ApiService.class).writingletter(cache.getUser().getToken(),jsonuser)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ResponseData<Object>>(){
-                    @Override
-                    public void accept(@NonNull ResponseData<Object> rd) throws Exception {
-                        Toast.makeText(WtringActivity.this,rd.getMsg(),Toast.LENGTH_SHORT);
-                        if(rd.getRet()==0){
-
-                            Envelope envelope = new Envelope();
-                            envelope.setReceiver(recevier);
-                            envelope.setSender(sender);
-                            envelope.setText(text);
-                            envelope.setTimestamp(timestamp);
-                            envelope.setStampViewId(R.drawable.stamp_1);
-                        }
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        Log.e("writingletter",throwable.getMessage());
-                    }
-                });
-                */
-        Intent intent = new Intent(this,TempStampViewActivity.class);
-        intent.putExtra("letter",letter);
+        letter.setType(sendertype);
+        Intent intent = new Intent(this, TempStampViewActivity.class);
+        if(sendertype==2) {
+            intent.putExtra("year",year);
+            intent.putExtra("month",month);
+            intent.putExtra("day",day);
+        }
+        intent.putExtra("letter", letter);
         startActivity(intent);
     }
 

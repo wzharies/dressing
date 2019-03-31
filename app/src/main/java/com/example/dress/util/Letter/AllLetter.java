@@ -35,7 +35,9 @@ public class AllLetter extends LitePalSupport implements Serializable {
     public void updateAllFirstLetter(){
         allFirstLetter = new ArrayList<Letter>();
         for(PerLetter letter:allletter){
-            allFirstLetter.add(letter.getLastNotMeLetter());
+            if(letter.hasLastNotMeLetter()) {
+                allFirstLetter.add(letter.getLastNotMeLetter());
+            }
         }
     }
 

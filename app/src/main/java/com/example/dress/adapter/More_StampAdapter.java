@@ -35,12 +35,18 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.bumptech.glide.request.target.Target.SIZE_ORIGINAL;
+
 public class More_StampAdapter extends RecyclerView.Adapter<More_StampAdapter.ViewHolder> {
     private Context mContext;
     private int position;
     private int[] stampcount;
     private List<tempStamp> stamps;
     private Letter letter;
+
+    private int year;
+    private int month;
+    private int day;
 
     public More_StampAdapter(int _position, Letter _letter)
     {
@@ -52,6 +58,14 @@ public class More_StampAdapter extends RecyclerView.Adapter<More_StampAdapter.Vi
             System.out.print(stampcount[i]);
         }
         stamps = cache.getAllStamp().getPerStamps().get(position).getStamps();
+    }
+
+    public More_StampAdapter(int _position, Letter _letter,int year,int month,int day)
+    {
+        this(_position,_letter);
+        this.year = year;
+        this.month = month;
+        this.day = day;
     }
     @NonNull
     @Override
@@ -65,9 +79,13 @@ public class More_StampAdapter extends RecyclerView.Adapter<More_StampAdapter.Vi
         holder.stampView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                letter.setStampviewid(letter.getStampviewid()/100*100+position+1);
-                showNormalDialog();
+                int i = holder.getAdapterPosition();
+                letter.setStampviewid(letter.getStampviewid()/100*100+i+1);
+                if(stampcount[i]<=0){
+                    Toast.makeText(mContext,"邮票数量不够",Toast.LENGTH_SHORT).show();
+                }else {
+                    showNormalDialog();
+                }
             }
         });
         return holder;
@@ -76,7 +94,11 @@ public class More_StampAdapter extends RecyclerView.Adapter<More_StampAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull More_StampAdapter.ViewHolder viewHolder, int i) {
         System.out.println(position+"-"+i);
-        Glide.with(mContext).load(GetResouce.getResource(position+1,i+1)).into(viewHolder.stampImage);
+        //屏幕的宽度(px值）
+        int screenWidth = mContext.getResources().getDisplayMetrics().widthPixels;
+        //Item的宽度，或图片的宽度
+        int width = screenWidth/2;
+        Glide.with(mContext).load(GetResouce.getResource(position+1,i+1)).override(width,SIZE_ORIGINAL).into(viewHolder.stampImage);
         viewHolder.stampText.setText(stampcount[i]+"");
     }
 
@@ -107,8 +129,8 @@ public class More_StampAdapter extends RecyclerView.Adapter<More_StampAdapter.Vi
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(mContext);
       //  normalDialog.setIcon(R.drawable.icon_dialog);
-        normalDialog.setTitle("我是一个普通Dialog");
-        normalDialog.setMessage("你要点击哪一个按钮呢?");
+        normalDialog.setTitle("发送信件");
+        normalDialog.setMessage("是否发送？");
         normalDialog.setPositiveButton("确定",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -124,22 +146,16 @@ public class More_StampAdapter extends RecyclerView.Adapter<More_StampAdapter.Vi
                         jsonuser.addProperty("text",letter.getText());
                         jsonuser.addProperty("timestamp",letter.getTimestamp());
                         jsonuser.addProperty("type",letter.getType());
-                        System.out.println(letter.toString());
+                        System.out.println(year+month+day);
                         Log.i("lettertext",letter.getText());
-                        RetrofitManager.create(ApiService.class).writingletter(cache.getUser().getToken(),jsonuser)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(new Consumer<ResponseData<Object>>(){
-                                    @Override
-                                    public void accept(@NonNull ResponseData<Object> rd) throws Exception {
-                                        Toast.makeText(mContext,rd.getMsg(),Toast.LENGTH_SHORT);
-                                    }
-                                }, new Consumer<Throwable>() {
-                                    @Override
-                                    public void accept(@NonNull Throwable throwable) throws Exception {
-                                        Log.e("writingletter",throwable.getMessage());
-                                    }
-                                });
+                        if(letter.getType()==2){
+                            System.out.println("发送给自己");
+                            jsonuser.addProperty("year",year);
+                            jsonuser.addProperty("month",month);
+                            jsonuser.addProperty("day",day);
+                        }
+                        uploaddate(jsonuser);
+
                         //Toast.makeText(mContext,"发送",Toast.LENGTH_SHORT);
                     }
                 });
@@ -147,10 +163,52 @@ public class More_StampAdapter extends RecyclerView.Adapter<More_StampAdapter.Vi
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //...To-do
+
                     }
                 });
         // 显示
         normalDialog.show();
+
+    }
+
+    private void showUnNormalDialog(){
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(mContext);
+        //  normalDialog.setIcon(R.drawable.icon_dialog);
+        normalDialog.setTitle("发送失败");
+        normalDialog.setMessage("邮票数量不够");
+        normalDialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        // 显示
+        normalDialog.show();
+
+    }
+    private void uploaddate(JsonObject jsonuser){
+        RetrofitManager.create(ApiService.class).writingletter(cache.getUser().getToken(),jsonuser)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseData<Object>>(){
+                    @Override
+                    public void accept(@NonNull ResponseData<Object> rd) throws Exception {
+                        Toast.makeText(mContext,rd.getMsg(),Toast.LENGTH_SHORT);
+                        ActivityCollector.finishAllStampActivity();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.e("writingletter",throwable.getMessage());
+                    }
+                });
     }
 }

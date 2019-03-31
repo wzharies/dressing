@@ -4,14 +4,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.dress.R;
+import com.example.dress.activity.Myapplication;
 import com.example.dress.adapter.EnvelopeAdapter;
 import com.example.dress.util.Api.ApiService;
 import com.example.dress.util.Letter.AllLetter;
@@ -54,6 +60,9 @@ public class Fragment2 extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
     }
 
     @Override
@@ -88,7 +97,7 @@ public class Fragment2 extends Fragment {
                     @Override
                     public void accept(@NonNull ResponseData<List<Letter>> rd) throws Exception {
                         if(rd!=null){
-                            Toast.makeText(getActivity(),rd.getMsg(),Toast.LENGTH_SHORT);
+                            Toast.makeText(getActivity(),rd.getMsg(),Toast.LENGTH_SHORT).show();
                             if(rd.getRet()==0){
                                 list_to_Allletter(rd.getData());
                             }
@@ -99,6 +108,8 @@ public class Fragment2 extends Fragment {
                     @Override
                     public void accept(@NonNull Throwable throwable) throws Exception {
                         throwable.printStackTrace();
+                        Toast.makeText(getActivity(),"连接异常",Toast.LENGTH_SHORT).show();
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 });
     }
@@ -117,12 +128,11 @@ public class Fragment2 extends Fragment {
                 if(id_to_name.get(letter.getSenderid())==null){   //发送者还没有添加到列表
                     id_to_name.put(letter.getSenderid(),letter.getSender());
                     id_to_position.put(letter.getSenderid(),allletter.size());
-                    System.out.println(allletter.size()+"allletter.size()");
+                    //System.out.println(allletter.size()+"allletter.size()");
                     position_to_id.put(allletter.size(),letter.getSenderid());
                     List<Letter> perletter = new ArrayList<Letter>();
                     perletter.add(letter);
                     allletter.add(new PerLetter(letter.getSenderid(),perletter));  //添加到列表
-                    System.out.println();
                 }else{
                     allletter.get(id_to_position.get(letter.getSenderid())).getPerletter().add(letter);
                 }
@@ -138,10 +148,9 @@ public class Fragment2 extends Fragment {
                     }
                 }else{
                     allletter.get(id_to_position.get(letter.getReceiverid())).getPerletter().add(letter);
-                    System.out.println(id_to_position.get(letter.getReceiverid()));
+                    //System.out.println(id_to_position.get(letter.getReceiverid()));
                 }
             }
-
         }
         allletters.setAllletter(allletter);
         allletters.setId_to_name(id_to_name);

@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.dress.R;
+import com.example.dress.adapter.ActivityCollector;
 import com.example.dress.adapter.StampAdapter;
 import com.example.dress.util.Letter.Letter;
 import com.example.dress.util.Stamp.AllStamp;
@@ -28,13 +30,19 @@ public class TempStampViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp_view);
+        ActivityCollector.addStampActivity(this);
+
         Intent intent = getIntent();
         Letter letter = (Letter)intent.getSerializableExtra("letter");
+        int year = intent.getIntExtra("year",2077);
+        int month = intent.getIntExtra("month",0);
+        int day = intent.getIntExtra("day",0);
         ButterKnife.bind(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
+        Log.i(year+month+day+"wtringactivity",year+month+day+"");
 
-        StampAdapter stampAdapter = new StampAdapter(cache.getAllStamp().getPerStamps(),cache.getStampcount(),letter);
+        StampAdapter stampAdapter = new StampAdapter(cache.getAllStamp().getPerStamps(),cache.getStampcount(),letter,year,month,day);
         recyclerView.setAdapter(stampAdapter);
 
         //设置toolbar

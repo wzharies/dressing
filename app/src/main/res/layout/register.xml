@@ -21,7 +21,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:clickable="true"
-            android:src="@mipmap/img_3"
+            android:src="@drawable/returnicon"
             android:onClick="onClick"
             />
 
@@ -30,7 +30,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="注册"
-            android:textColor="#fff"
             android:textSize="20dp"
             android:layout_toRightOf="@+id/iv_registeractivity_back"
             android:layout_centerVertical="true"
@@ -44,9 +43,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@+id/rl_registeractivity_top"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_margin="50dp"
         >
         <!-- 第一个文本编辑框  输入用户名 -->
         <LinearLayout
@@ -64,7 +61,9 @@
                 android:layout_height="50dp"
                 android:hint="请输入手机号"
                 android:gravity="center_vertical"
+                android:theme="@style/MyEditText"
                 android:layout_marginLeft="10dp"
+                android:textColor="@android:color/black"
                 />
         </LinearLayout>
         <!-- 第二个文本编辑框  输入密码 -->
@@ -83,6 +82,7 @@
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
+                android:theme="@style/MyEditText"
                 android:inputType="textPassword"
                 android:hint="请输入密码" />
         </LinearLayout>
@@ -101,6 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="请再次输入密码"
+                android:theme="@style/MyEditText"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:inputType="textPassword"
@@ -122,6 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="请输入邀请码"
+                android:theme="@style/MyEditText"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:inputType="textPassword"
@@ -151,6 +153,7 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:theme="@style/MyEditText"
                     android:hint="请输入4位验证码" />
 
                 <ImageView
