@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@color/common_action_bar_splitter"
+    android:orientation="horizontal"
+    android:paddingVertical="10dp">
+        <LinearLayout
+            android:background="#fff"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/show_letter_title"
+                android:textSize="25sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="李尚商品书"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/show_letter_text"
+                android:text="春之声，福之所倚，春之声，郡治所用。伪军二四，肆意和鱼鱼双刺？但此君推杆就医，是恶意啊大家四分"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:lineSpacingExtra="5dp"
+                android:maxLines="2"
+                android:maxEms="15"
+                android:ellipsize="end"
+                android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/show_letter_tag"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="古树   家书"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:background="#fff"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="2">
+        <ImageView
+            android:id="@+id/show_letter_image"
+            android:src="@drawable/stamp3_8"
+            android:layout_width="90dp"
+            android:layout_height="90dp" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

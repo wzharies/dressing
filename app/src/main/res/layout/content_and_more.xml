@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    android:layout_marginVertical="5dp"
+    android:background="@color/bg_white"
+    android:gravity="center">
+
+    <!--下面的textview作为分割线-->
+    <TextView
+        android:layout_width="8dp"
+        android:layout_height="20dp"
+        android:background="@color/colorLightGreen"/>
+    <TextView
+        android:id="@+id/content"
+        android:text="精选内容"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/more"
+        android:layout_marginLeft="280dp"
+        android:text="查看更多"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
