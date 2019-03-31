@@ -21,12 +21,15 @@ import com.example.dress.util.Letter.Letter;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import static com.bumptech.glide.request.target.Target.SIZE_ORIGINAL;
+
 public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHolder> {
     private List<Letter> envelopeList;
     private Context mContext;
 
     public EnvelopeAdapter(List<Letter> envelopes)
     {
+
         envelopeList=envelopes;
     }
     @NonNull
@@ -61,13 +64,19 @@ public class EnvelopeAdapter extends RecyclerView.Adapter<EnvelopeAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Letter envelope = envelopeList.get(i);
-        viewHolder.text.setText(envelope.getText());
-        viewHolder.sender.setText(envelope.getSender());
-        viewHolder.receiver.setText("亲爱的"+envelope.getReceiver()+":");
-        int group = envelope.getStampviewid()/100;
-        int index = envelope.getStampviewid()%100;
-        Log.i("debug",group+"-"+index);
-        Glide.with(mContext).load(GetResouce.getResource(group,index)).into(viewHolder.stampImage);
+        if(envelope!=null) {
+            viewHolder.text.setText(envelope.getText());
+            viewHolder.sender.setText(envelope.getSender());
+            viewHolder.receiver.setText("亲爱的" + envelope.getReceiver() + ":");
+            int group = envelope.getStampviewid() / 100;
+            int index = envelope.getStampviewid() % 100;
+            Log.i("debug", group + "-" + index);
+            //屏幕的宽度(px值）
+            int screenWidth = mContext.getResources().getDisplayMetrics().widthPixels;
+            //Item的宽度，或图片的宽度
+            int width = screenWidth/2;
+            Glide.with(mContext).load(GetResouce.getResource(group, index)).fitCenter().into(viewHolder.stampImage);
+        }
     }
 
     @Override

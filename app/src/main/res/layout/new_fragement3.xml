@@ -80,6 +80,7 @@
                 android:layout_height="40dp"
                 android:orientation="horizontal"
                 >
+
                 <ImageView
                     android:src="@drawable/dialy"
                     android:layout_width="0dp"
@@ -167,6 +168,7 @@
                     android:layout_height="20dp"
                     android:layout_marginTop="16dp" />
                 <ImageView
+
                     android:layout_marginStart="35dp"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -212,7 +214,6 @@
                     android:layout_marginTop="16dp"
                     android:src="@drawable/ic_right_arrow"
                     />
-
             </LinearLayout>
             <View
                 android:layout_marginLeft="16dp"
@@ -245,6 +246,7 @@
                     android:layout_height="20dp"
                     android:layout_marginTop="16dp" />
                 <ImageView
+
                     android:layout_marginStart="35dp"
                     android:layout_width="20dp"
                     android:layout_height="20dp"

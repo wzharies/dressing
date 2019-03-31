@@ -24,12 +24,18 @@ import com.example.dress.util.cache;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bumptech.glide.request.target.Target.SIZE_ORIGINAL;
+
 public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> {
     private int[][] stampcount;
     private List<PerStamp> stampList;
     private Context mContext;
     private ArrayList<Integer> whichhave;
     private Letter letter;
+
+    private int year;
+    private int month;
+    private int day;
 
     public StampAdapter(List<PerStamp> stamps, int[][] stampcounts, Letter _letter)
     {
@@ -38,12 +44,21 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
         whichhave = cache.getWhichhava();
         letter = _letter;
     }
+
+    public StampAdapter(List<PerStamp> stamps, int[][] stampcounts, Letter _letter,int year,int month,int day)
+    {
+        this(stamps,stampcounts,_letter);
+        this.year=year;
+        this.month=month;
+        this.day=day;
+    }
     @NonNull
     @Override
     public StampAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         if(mContext==null){
             mContext=viewGroup.getContext();
         }
+
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.stamp_item,viewGroup,false);
         final StampAdapter.ViewHolder holder = new StampAdapter.ViewHolder(view);
 
@@ -56,6 +71,11 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
                 intent.putExtra("stamp",whichhave.get(position));
                 letter.setStampviewid((whichhave.get(position)+1)*100);
                 intent.putExtra("letter",letter);
+                if(letter.getType()==2){
+                    intent.putExtra("year",year);
+                    intent.putExtra("month",month);
+                    intent.putExtra("day",day);
+                }
                 mContext.startActivity(intent);
             }
         });
@@ -71,7 +91,10 @@ public class StampAdapter extends RecyclerView.Adapter<StampAdapter.ViewHolder> 
                 cnt++;
         }
         String count =cnt +"/"+stampcount[i].length;
-        Glide.with(mContext).load(GetResouce.getResource(stamp.getId(),1)).into(viewHolder.stampImage);
+        int screenWidth = mContext.getResources().getDisplayMetrics().widthPixels;
+        //Item的宽度，或图片的宽度
+        int width = screenWidth/2;
+        Glide.with(mContext).load(GetResouce.getResource(stamp.getId(),1)).override(width,SIZE_ORIGINAL).into(viewHolder.stampImage);
         viewHolder.stampText.setText(count);
     }
 

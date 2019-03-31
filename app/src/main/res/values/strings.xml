@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">Dress</string>
-
     <string name="item_title_1">底部导航之布局</string>
     <string name="item_title_2">底部导航之BottomNavigationView</string>
 
@@ -33,5 +31,6 @@
     <string name="page3_shop">商城</string>
     <string name="selfinfor_save">保存</string>
 
+    <string name="app_name_">展信悦</string>
 
 </resources>

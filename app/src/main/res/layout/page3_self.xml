@@ -8,6 +8,7 @@
     tools:context=".activity.SelfInforActivity"
 
     >
+
     <RelativeLayout
         android:id="@+id/rl_self_top"
         android:layout_width="match_parent"
@@ -21,7 +22,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:clickable="true"
-            android:src="@mipmap/img_3"
+            android:src="@drawable/returnicon"
             />
 
         <TextView
@@ -58,6 +59,8 @@
                 android:layout_height="wrap_content"
                 android:text="笔  名："/>
             <EditText
+                android:maxLength="25"
+                android:maxLines="1"
                 android:id="@+id/et_self_username"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -81,8 +84,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
+                android:maxLength="25"
+                android:maxLines="1"
                 android:layout_marginLeft="10dp"
-                android:inputType="textPassword"
                 android:hint="请输入修改后的签名" />
         </LinearLayout>
 
