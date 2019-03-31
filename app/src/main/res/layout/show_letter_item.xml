@@ -12,10 +12,13 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:gravity="center"
+            android:paddingLeft="10dp"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/show_letter_title"
                 android:textSize="25sp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="李尚商品书"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -23,7 +26,7 @@
                 android:id="@+id/show_letter_text"
                 android:text="春之声，福之所倚，春之声，郡治所用。伪军二四，肆意和鱼鱼双刺？但此君推杆就医，是恶意啊大家四分"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:lineSpacingExtra="5dp"
                 android:maxLines="2"
                 android:maxEms="15"
@@ -31,7 +34,7 @@
                 android:textSize="15sp"/>
             <TextView
                 android:id="@+id/show_letter_tag"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"

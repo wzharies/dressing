@@ -1,10 +1,13 @@
 package com.example.dress.activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -15,6 +18,14 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dress.R;
+import com.example.dress.adapter.ShowLetterAdapter;
+import com.example.dress.util.ShowLetter.AllShowLetter;
+import com.example.dress.util.ShowLetter.ShowLetterGroup;
+import com.example.dress.util.ShowLetter.TempShowLetter;
+import com.example.dress.util.cache;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Museum_Activity extends AppCompatActivity {
 
@@ -22,7 +33,14 @@ public class Museum_Activity extends AppCompatActivity {
     private AppBarLayout appBarLayout;
     private CollapsingToolbarLayout collapsingToolbar;
     private ImageView toolBarImage;
+    //recycleview的相关变量
+    int tag=0;
     private RecyclerView recyclerView;
+    private ShowLetterAdapter adapter;
+    private AllShowLetter allShowLetter= cache.getAllShowLetter();
+    private List<TempShowLetter> showLetters = new ArrayList<>();
+
+
     private Button tag_1;
     private Button tag_2;
     private Button tag_3;
@@ -69,21 +87,33 @@ public class Museum_Activity extends AppCompatActivity {
         tag_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(tag!=1) {
+                    recyclerView.removeAllViews();
+                    tag = 1;
+                    initShowLetterList();
+                }
             }
         });
         //第二个分类
         tag_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(tag!=2) {
+                    recyclerView.removeAllViews();
+                    tag = 2;
+                    initShowLetterList();
+                }
             }
         });
         //第三个分类
         tag_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(tag!=3) {
+                    recyclerView.removeAllViews();
+                    tag = 3;
+                    initShowLetterList();
+                }
             }
         });
 
@@ -94,6 +124,7 @@ public class Museum_Activity extends AppCompatActivity {
         appBarLayout=(AppBarLayout)findViewById(R.id.appBarlayout);
         collapsingToolbar=(CollapsingToolbarLayout)findViewById(R.id.collasping_toolbBar);
         toolBarImage = (ImageView)findViewById(R.id.toolbar_museum_image);
+        recyclerView = (RecyclerView)findViewById(R.id.museum_recycleView);
         //设置分类
         tag_1=findViewById(R.id.classfy_tag1);
         tag_2=findViewById(R.id.classfy_tag2);
@@ -105,6 +136,59 @@ public class Museum_Activity extends AppCompatActivity {
         if(actionBar!=null){
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        //设置recycleview的布局
+        initShowLetterList();
+    }
+    //初始化展示信件列表
+    private void initShowLetterList(){
+        showLetters.clear();
+        List<ShowLetterGroup> groups=allShowLetter.getShowLetterGroups();
+        if(tag==0){
+            ShowLetterGroup group1 = groups.get(0);
+            ShowLetterGroup group2 = groups.get(1);
+            ShowLetterGroup group3 = groups.get(2);
+            for(int i=0;i<2;i++) {
+                showLetters.add(group1.getShowLetters().get(i));
+                showLetters.add(group2.getShowLetters().get(i));
+                showLetters.add(group3.getShowLetters().get(i));
+            }
+
+
+        }else if(tag==1){
+            //设置其他的颜色
+            tag_1.setActivated(true);
+            tag_2.setActivated(false);
+            tag_3.setActivated(false);
+            ShowLetterGroup group1 = groups.get(0);
+            for(int i=0;i<group1.getShowLetters().size();i++) {
+                showLetters.add(group1.getShowLetters().get(i));
+
+            }
+
+        }else if(tag==2){
+            tag_1.setActivated(false);
+            tag_2.setActivated(true);
+            tag_3.setActivated(false);
+            ShowLetterGroup group2 = groups.get(1);
+            for(int i=0;i<group2.getShowLetters().size();i++) {
+                showLetters.add(group2.getShowLetters().get(i));
+            }
+
+        }else  if(tag==3){
+            tag_1.setActivated(false);
+            tag_2.setActivated(false);
+            tag_3.setActivated(true);
+            ShowLetterGroup group3 = groups.get(2);
+            for(int i=0;i<group3.getShowLetters().size();i++) {
+                showLetters.add(group3.getShowLetters().get(i));
+
+            }
+        }
+        LinearLayoutManager layoutManager =new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        adapter = new ShowLetterAdapter(showLetters);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
 

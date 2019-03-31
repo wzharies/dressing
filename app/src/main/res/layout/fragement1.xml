@@ -4,15 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:layout="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dangrey"
     android:orientation="vertical">
 
     <com.youth.banner.Banner
     android:id="@+id/banner"
     android:layout_width="match_parent"
-    android:layout_height="200dp" />
+    android:layout_height="200dp"
+    android:layout_marginBottom="5dp"/>
     <LinearLayout
+        android:layout_marginVertical="5dp"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="@color/bg_white"
         android:gravity="center">
 
         <LinearLayout
@@ -59,7 +63,7 @@
         android:id="@+id/fragment1_recycle_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include layout="@layout/show_letter_item"/>
+
 
     </android.support.v7.widget.RecyclerView>
 

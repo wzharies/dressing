@@ -9,6 +9,11 @@ public class ShowLetterGroup extends LitePalSupport implements Serializable {
     private int groupId;
     private List<TempShowLetter> showLetters;
 
+    public ShowLetterGroup(int groupId, List<TempShowLetter> showLetters) {
+        this.groupId = groupId;
+        this.showLetters = showLetters;
+    }
+
     public int getGroupId() {
         return groupId;
     }

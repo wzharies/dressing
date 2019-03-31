@@ -21,6 +21,8 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.dress.R;
 import com.example.dress.activity.Museum_Activity;
+import com.example.dress.adapter.ShowLetterAdapter;
+import com.example.dress.util.ShowLetter.TempShowLetter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -29,6 +31,7 @@ import com.youth.banner.loader.ImageLoader;
 import com.youth.banner.loader.ImageLoaderInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -39,9 +42,14 @@ public class Fragment1 extends Fragment implements OnBannerListener {
     private MyLoader mMyImageLoader;
     private ArrayList<String> list_path;
     private ArrayList<String> list_title;
+    //轮播图的图片列表和文字列表
     private ImageView letter_museum_icon;
     private ImageView letter_good_icon;
     private RecyclerView recyclerView;
+    //recycleView的数据
+    private List<TempShowLetter> showLetters = new ArrayList<>();
+    //recycleView的适配器
+    private ShowLetterAdapter adapter;
 
     public Fragment1() {
         super();
@@ -72,6 +80,11 @@ public class Fragment1 extends Fragment implements OnBannerListener {
         list_title.add("热爱劳动");
         list_title.add("不搞对象");
 
+        //测试数据
+        TempShowLetter tempShowLetter_0 = new TempShowLetter("王正浩真厉害","很久以前注册了帐号，但是现在不想用那个id了。不过好像码云不支持修改用户名。这个功能对我很重要，我希望有这个功能。如果实在不行，请提供一个删除帐号的功能，我重新注册。",0);
+        TempShowLetter tempShowLetter_1 = new TempShowLetter("王正浩真厉害","很久以前注册了帐号，但是现在不想用那个id了。不过好像码云不支持修改用户名。这个功能对我很重要，我希望有这个功能。如果实在不行，请提供一个删除帐号的功能，我重新注册。",0);
+        showLetters.add(tempShowLetter_0);
+        showLetters.add(tempShowLetter_1);
     }
 
     private void initView() {
@@ -107,8 +120,11 @@ public class Fragment1 extends Fragment implements OnBannerListener {
 
         letter_museum_icon = view.findViewById(R.id.letter_museum);
         letter_good_icon = view.findViewById(R.id.good_letter);
-        LinearLayoutManager layoutManager =new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager =new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        adapter = new ShowLetterAdapter(showLetters);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
 
 
 

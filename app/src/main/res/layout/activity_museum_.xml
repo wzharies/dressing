@@ -36,23 +36,23 @@
                 <Button
                     android:id="@+id/classfy_tag1"
                     android:text="古代"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="70dp"
-                    android:layout_height="40dp"
+                    android:background="@drawable/museum_button_selector"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
                     android:layout_marginHorizontal="15dp"/>
                 <Button
                     android:id="@+id/classfy_tag2"
                     android:text="近现代"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="70dp"
-                    android:layout_height="40dp"
+                    android:background="@drawable/museum_button_selector"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
                     android:layout_marginHorizontal="15dp"/>
                 <Button
                     android:id="@+id/classfy_tag3"
                     android:text="近现代"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="70dp"
-                    android:layout_height="40dp"
+                    android:background="@drawable/museum_button_selector"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
                     android:layout_marginHorizontal="15dp"/>
             </LinearLayout>
             <android.support.v7.widget.Toolbar
@@ -105,9 +105,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <include layout="@layout/show_letter_item"/>
-            <include layout="@layout/show_letter_item"/>
-            <include layout="@layout/show_letter_item"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/museum_recycleView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
 
 
 

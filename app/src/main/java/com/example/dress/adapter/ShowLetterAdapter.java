@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dress.R;
@@ -23,16 +24,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowLetterAdapter extends RecyclerView.Adapter<ShowLetterAdapter.ViewHolder>{
-    private List<ShowLetterGroup> showLetterList;
+    private List<TempShowLetter> showLetterList;
     private Context mContext;
-    private ArrayList<Integer> whichhave;
-    private int tag;
     private TempShowLetter letter;
 
-    public ShowLetterAdapter(List<ShowLetterGroup> showLetterGroups, int tag)
+    public ShowLetterAdapter(List<TempShowLetter> showLetterGroups)
     {
         showLetterList=showLetterGroups;
-        whichhave = cache.getWhichhava();
     }
     @NonNull
     @Override
@@ -47,7 +45,7 @@ public class ShowLetterAdapter extends RecyclerView.Adapter<ShowLetterAdapter.Vi
         holder.showLetterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Toast.makeText(mContext,"you ttttttttt",Toast.LENGTH_SHORT).show();
             }
         });
         return holder;
@@ -55,14 +53,21 @@ public class ShowLetterAdapter extends RecyclerView.Adapter<ShowLetterAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ShowLetterAdapter.ViewHolder viewHolder, int i) {
-        ShowLetterGroup showLetters = showLetterList.get(whichhave.get(i));
-        int cnt=0;
-        for(int k = 0;k<showLettercount[whichhave.get(i)].length;k++){
-            if(showLettercount[i][k]!=0)
-                cnt++;
+        TempShowLetter tempShowLetter = showLetterList.get(i);
+        int tag = tempShowLetter.getTag();
+        viewHolder.showLetterTitle.setText(tempShowLetter.getTitle());
+        viewHolder.showLetterImage.setImageResource(tempShowLetter.getIamgeSourse());
+        viewHolder.showLetterText.setText(tempShowLetter.getText());
+        if(tag==1){
+            viewHolder.showLetterTag.setText("#标签1#");
         }
-        String count =cnt +"/"+showLettercount[i].length;
-        viewHolder.showLetterText.setText(count);
+        else if(tag==2){
+            viewHolder.showLetterTag.setText("#标签2#");
+        }
+        else {
+            viewHolder.showLetterTag.setText("#标签3#");
+        }
+
     }
 
     @Override
@@ -75,6 +80,7 @@ public class ShowLetterAdapter extends RecyclerView.Adapter<ShowLetterAdapter.Vi
         ImageView showLetterImage;
         TextView showLetterTitle;
         TextView showLetterText;
+        TextView showLetterTag;
 
         public ViewHolder(View view){
             super(view);
@@ -82,6 +88,7 @@ public class ShowLetterAdapter extends RecyclerView.Adapter<ShowLetterAdapter.Vi
             showLetterImage = (ImageView)view.findViewById(R.id.show_letter_image);
             showLetterText = (TextView)view.findViewById(R.id.show_letter_text);
             showLetterTitle = (TextView)view.findViewById(R.id.show_letter_title);
+            showLetterTag = (TextView)view.findViewById(R.id.show_letter_tag);
         }
     }
 }

@@ -8,6 +8,10 @@ import java.util.List;
 public class AllShowLetter extends LitePalSupport implements Serializable {
     List<ShowLetterGroup> showLetterGroups;
 
+    public AllShowLetter(List<ShowLetterGroup> showLetterGroups) {
+        this.showLetterGroups = showLetterGroups;
+    }
+
     public List<ShowLetterGroup> getShowLetterGroups() {
         return showLetterGroups;
     }

@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.dress.util.Api.ApiService;
+import com.example.dress.util.ShowLetter.AllShowLetter;
 import com.example.dress.util.Stamp.AllStamp;
 import com.example.dress.util.Stamp.PerStamp;
 import com.example.dress.util.Stamp.tempStamp;
@@ -115,5 +116,9 @@ public class DataInitial {
         AllStamp allStamp = new AllStamp();
         allStamp.setPerStamps(perStamps);
         return allStamp;
+    }
+    //用来获取所有展示信件的数据
+    public static AllShowLetter initAllShowLetter(){
+        return null;
     }
 }
