@@ -26,8 +26,10 @@
                 android:gravity="center"
                 android:layout_marginBottom="15dp">
                 <TextView
+                    android:id="@+id/museum_classfy_text"
                     android:gravity="center"
                     android:text="分类 >"
+                    android:visibility="invisible"
                     android:textColor="@color/red"
                     android:textSize="15dp"
                     android:layout_width="wrap_content"
@@ -35,6 +37,7 @@
 
                 <Button
                     android:id="@+id/classfy_tag1"
+                    android:visibility="invisible"
                     android:text="古代"
                     android:background="@drawable/museum_button_selector"
                     android:layout_width="60dp"
@@ -42,6 +45,7 @@
                     android:layout_marginHorizontal="15dp"/>
                 <Button
                     android:id="@+id/classfy_tag2"
+                    android:visibility="invisible"
                     android:text="近现代"
                     android:background="@drawable/museum_button_selector"
                     android:layout_width="60dp"
@@ -49,6 +53,7 @@
                     android:layout_marginHorizontal="15dp"/>
                 <Button
                     android:id="@+id/classfy_tag3"
+                    android:visibility="invisible"
                     android:text="近现代"
                     android:background="@drawable/museum_button_selector"
                     android:layout_width="60dp"

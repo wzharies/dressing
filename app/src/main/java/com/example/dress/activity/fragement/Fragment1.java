@@ -85,6 +85,10 @@ public class Fragment1 extends Fragment implements OnBannerListener {
         TempShowLetter tempShowLetter_1 = new TempShowLetter("王正浩真厉害","很久以前注册了帐号，但是现在不想用那个id了。不过好像码云不支持修改用户名。这个功能对我很重要，我希望有这个功能。如果实在不行，请提供一个删除帐号的功能，我重新注册。",0);
         showLetters.add(tempShowLetter_0);
         showLetters.add(tempShowLetter_1);
+        showLetters.add(tempShowLetter_1);
+        showLetters.add(tempShowLetter_1);
+        showLetters.add(tempShowLetter_1);
+        showLetters.add(tempShowLetter_1);
     }
 
     private void initView() {
@@ -116,15 +120,15 @@ public class Fragment1 extends Fragment implements OnBannerListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragement1, container, false);
         mBanner = view.findViewById(R.id.banner);
-        recyclerView = (RecyclerView)view.findViewById(R.id.fragment1_recycle_view) ;
+        //recyclerView = (RecyclerView)view.findViewById(R.id.fragment1_recycle_view) ;
 
         letter_museum_icon = view.findViewById(R.id.letter_museum);
         letter_good_icon = view.findViewById(R.id.good_letter);
-        LinearLayoutManager layoutManager =new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        adapter = new ShowLetterAdapter(showLetters);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        //LinearLayoutManager layoutManager =new LinearLayoutManager(getActivity());
+       // layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        //adapter = new ShowLetterAdapter(showLetters);
+       // recyclerView.setLayoutManager(layoutManager);
+        //recyclerView.setAdapter(adapter);
 
 
 
@@ -152,7 +156,8 @@ public class Fragment1 extends Fragment implements OnBannerListener {
         letter_good_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //Intent intent = new Intent(getActivity(), Museum_good_letter_Activity.class);
+                //startActivity(intent);
             }
         });
 

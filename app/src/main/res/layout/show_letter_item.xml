@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="@color/common_action_bar_splitter"
+    android:background="@color/dangrey"
     android:orientation="horizontal"
-    android:paddingVertical="10dp">
+    android:paddingVertical="5dp">
         <LinearLayout
             android:background="#fff"
             android:layout_width="0dp"
