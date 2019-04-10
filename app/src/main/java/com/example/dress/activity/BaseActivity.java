@@ -15,7 +15,7 @@ public class BaseActivity extends AppCompatActivity {
         ActivityCollector.addActivity(this);
     }
 
-    @Override
+   @Override
     protected void onDestroy() {
         super.onDestroy();
         ActivityCollector.removeActivity(this);

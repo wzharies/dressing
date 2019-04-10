@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/item_1"
-        android:icon="@mipmap/img_1"
+        android:icon="@drawable/discover"
         android:title="@string/menu_bottom_navigation1"
         />
     <item
         android:id="@+id/item_2"
-        android:icon="@mipmap/img_2"
+        android:icon="@drawable/evolop"
         android:title="@string/menu_bottom_navigation2"
         />
 

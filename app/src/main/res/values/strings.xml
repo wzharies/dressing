@@ -2,8 +2,8 @@
     <string name="item_title_1">底部导航之布局</string>
     <string name="item_title_2">底部导航之BottomNavigationView</string>
 
-    <string name="menu_bottom_navigation1">中心</string>
-    <string name="menu_bottom_navigation2">信件</string>
+    <string name="menu_bottom_navigation1">探索</string>
+    <string name="menu_bottom_navigation2">信箱</string>
     <string name="menu_bottom_navigation3">我的</string>
 
     <string name="page3_text1">日记</string>

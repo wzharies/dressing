@@ -39,6 +39,7 @@ public class Fragment3 extends Fragment {
     @BindView(R.id.page3_1_signature)TextView page3_signature;
     @BindView(R.id.page3_1_avatar) ImageView page3_avatar;
     @BindView(R.id.about_app) LinearLayout page3_about;
+    @BindView(R.id.new_fragment3_email)ImageView new_fragment3_email;
     public Fragment3() {
         super();
     }

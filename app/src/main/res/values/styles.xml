@@ -24,6 +24,10 @@
     <style name="MyEditText" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/black</item>
     </style>
-
+<style name="Load" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="android:background"></item>
+</style>
 
 </resources>
